@@ -278,23 +278,64 @@
     return valid;
   }
 
+  const WHATSAPP_NUMBER = "923312901930";
+  const CONTACT_EMAIL = "hassankhan.mhk11@gmail.com";
+
+  function validateRequiredFields() {
+    const requiredFields = $$("#fName, #fEmail, #fPhone, #fMessage", form);
+    return requiredFields.map(validateField).every(Boolean);
+  }
+
+  function buildInquiryText() {
+    const data = new FormData(form);
+    const lines = [
+      "New inquiry from HS Web Studio website:",
+      "",
+      `Name: ${data.get("name") || "-"}`,
+      `Business: ${data.get("business") || "-"}`,
+      `Email: ${data.get("email") || "-"}`,
+      `Phone: ${data.get("phone") || "-"}`,
+      `Business type: ${data.get("businessType") || "-"}`,
+      `Needs: ${data.get("need") || "-"}`,
+      "",
+      `Message: ${data.get("message") || "-"}`
+    ];
+    return lines.join("\n");
+  }
+
+  /* Send via WhatsApp (form's default submit action) */
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const requiredFields = $$("#fName, #fEmail, #fPhone, #fMessage", form);
-    const allValid = requiredFields.map(validateField).every(Boolean);
-
-    if (!allValid) {
+    if (!validateRequiredFields()) {
       formNote.textContent = "Please check the highlighted fields.";
       formNote.style.color = "#f87171";
       return;
     }
 
-    /* This form is not yet connected to a backend.
-       Point the fetch/action below at Formspree, Web3Forms, EmailJS,
-       or a custom endpoint to actually deliver submissions. */
-    formNote.textContent = "Thanks! Your inquiry has been noted — we'll be in touch soon.";
+    const text = encodeURIComponent(buildInquiryText());
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener");
+
+    formNote.textContent = "Opening WhatsApp with your message ready to send — just hit send there.";
     formNote.style.color = "";
     form.reset();
+  });
+
+  /* Send via Email */
+  const emailSendBtn = $("#emailSendBtn");
+  emailSendBtn.addEventListener("click", () => {
+    if (!validateRequiredFields()) {
+      formNote.textContent = "Please check the highlighted fields.";
+      formNote.style.color = "#f87171";
+      return;
+    }
+
+    const data = new FormData(form);
+    const subject = encodeURIComponent(`Website inquiry from ${data.get("name") || "a visitor"}`);
+    const body = encodeURIComponent(buildInquiryText());
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+    formNote.textContent = "Opening your email app with your message ready to send.";
+    formNote.style.color = "";
   });
 
   requiredFieldsLiveValidation();
