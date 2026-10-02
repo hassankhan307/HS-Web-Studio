@@ -822,18 +822,19 @@ section { position: relative; padding: 108px 0; }
   .device--phone { width: 42%; }
 }
 
-/* Make dropdown options readable on dark theme */
-select {
-  color-scheme: dark;
+select,
+select option,
+select optgroup {
+  color-scheme: dark !important;
 }
 
 select option {
-  background-color: #0f1626;  /* match your form's dark background */
-  color: #ffffff;
+  background-color: #0f1626 !important;
+  color: #ffffff !important;
 }
 
 select option:checked,
 select option:hover {
-  background-color: #1e6bd6;
-  color: #ffffff;
+  background-color: #1e6bd6 !important;
+  color: #ffffff !important;
 }
