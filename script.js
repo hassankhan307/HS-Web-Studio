@@ -64,6 +64,24 @@
       description: "Portfolio website concept for an interior design business, built around large project imagery and a simple inquiry form.",
       colors: ["#163049", "#0b1626"],
       demoUrl: "#"
+    },
+    {
+      title: "Home Nursing Care",
+      category: "healthcare",
+      categoryLabel: "Home Nursing Care",
+      description: "Website concept for a home nursing care service, built around trust and clear information for families looking for in-home care.",
+      colors: ["#1a3450", "#0b1626"],
+      demoUrl: "https://hassankhan307.github.io/Nursing-home-demo/",
+      image: "assets/images/home-nursing-care.png"
+    },
+    {
+      title: "Willowmere Guest House",
+      category: "other",
+      categoryLabel: "Guest House / Hospitality",
+      description: "Website concept for a countryside guest house, built around warm imagery and simple booking inquiry information.",
+      colors: ["#2a3d2f", "#0f1a13"],
+      demoUrl: "https://hassankhan307.github.io/guest-house-demo/index.html",
+      image: "assets/images/willowmere-guest-house.jpg"
     }
   ];
 
