@@ -82,6 +82,15 @@
       colors: ["#2a3d2f", "#0f1a13"],
       demoUrl: "https://hassankhan307.github.io/guest-house-demo/index.html",
       image: "assets/images/willowmere-guest-house.jpg"
+    },
+    {
+      title: "Institute of Digital Dental Sciences",
+      category: "healthcare",
+      categoryLabel: "Healthcare / Dental Education",
+      description: "Website concept for a digital dentistry institute, presenting programs, training information and clear contact details.",
+      colors: ["#1a3450", "#0b1626"],
+      demoUrl: "https://hassankhan307.github.io/idds-demo/",
+      image: "assets/images/idds.avif"
     }
   ];
 
