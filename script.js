@@ -17,7 +17,7 @@
       categoryLabel: "Home Décor",
       description: "Modern home décor website concept, built to showcase a product catalogue with a premium, editorial feel.",
       colors: ["#2a3d2f", "#0f1a13"],
-      demoUrl: "https://hassankhan307.github.io/Home-decor-demo/index.html",
+      demoUrl: "https://hassankhan307.github.io/Home-decor-demo/",
       image: "assets/images/aurelia-home.avif"
     },
     {
