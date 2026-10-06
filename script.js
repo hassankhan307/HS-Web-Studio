@@ -58,12 +58,13 @@
       image: "assets/images/namak-kitchen.jpg"
     },
     {
-      title: "Studio Verve",
+      title: "Atelier Noir",
       category: "other",
       categoryLabel: "Interior Design",
       description: "Portfolio website concept for an interior design business, built around large project imagery and a simple inquiry form.",
       colors: ["#163049", "#0b1626"],
-      demoUrl: "#"
+      demoUrl: "https://hassankhan307.github.io/interior_design_demo/",
+      image: "assets/images/studio-verve.avif" 
     },
     {
       title: "Home Nursing Care",
