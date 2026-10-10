@@ -26,7 +26,7 @@
       categoryLabel: "Furniture",
       description: "Furniture store website concept, designed around clean product presentation and easy browsing by category.",
       colors: ["#3a2f1a", "#160f08"],
-      demoUrl: "https://hassankhan307.github.io/Furniture-demo/index.html",
+      demoUrl: "https://furniture.hswebstudio.site/",
       image: "assets/images/nestora.avif"
     },
     {
