@@ -35,7 +35,7 @@
       categoryLabel: "Healthcare / Dental",
       description: "Professional website concept for a modern dental clinic, with services, booking information and clear contact details.",
       colors: ["#1a3450", "#0b1626"],
-      demoUrl: "https://hassankhan307.github.io/dental-demo/",
+      demoUrl: "https://dental.hswebstudio.site/",
       image: "assets/images/elan-dental.jpg"
     },
     {
