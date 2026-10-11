@@ -72,7 +72,7 @@
       categoryLabel: "Home Nursing Care",
       description: "Website concept for a home nursing care service, built around trust and clear information for families looking for in-home care.",
       colors: ["#1a3450", "#0b1626"],
-      demoUrl: "https://hassankhan307.github.io/Nursing-home-demo/",
+      demoUrl: "https://nursinghome.hswebstudio.site/",
       image: "assets/images/home-nursing-care.png"
     },
     {
