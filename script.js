@@ -17,7 +17,7 @@
       categoryLabel: "Home Décor",
       description: "Modern home décor website concept, built to showcase a product catalogue with a premium, editorial feel.",
       colors: ["#2a3d2f", "#0f1a13"],
-      demoUrl: "http://homedecor.hswebstudio.site/",
+      demoUrl: "https://homedecor.hswebstudio.site/",
       image: "assets/images/aurelia-home.avif"
     },
     {
