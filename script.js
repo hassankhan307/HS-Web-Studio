@@ -54,7 +54,7 @@
       categoryLabel: "Restaurant",
       description: "Modern restaurant website concept with a digital menu, location details and reservation contact information.",
       colors: ["#452714", "#1c110a"],
-      demoUrl: "https://hassankhan307.github.io/restaurant-demo/",
+      demoUrl: "https://restaurant.hswebstudio.site/",
       image: "assets/images/namak-kitchen.jpg"
     },
     {
