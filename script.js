@@ -81,7 +81,7 @@
       categoryLabel: "Guest House / Hospitality",
       description: "Website concept for a countryside guest house, built around warm imagery and simple booking inquiry information.",
       colors: ["#2a3d2f", "#0f1a13"],
-      demoUrl: "https://hassankhan307.github.io/guest-house-demo/index.html",
+      demoUrl: "https://guesthouse.hswebstudio.site/",
       image: "assets/images/willowmere-guest-house.jpg"
     },
     {
@@ -90,7 +90,7 @@
       categoryLabel: "Healthcare / Dental Education",
       description: "Website concept for a digital dentistry institute, presenting programs, training information and clear contact details.",
       colors: ["#1a3450", "#0b1626"],
-      demoUrl: "https://hassankhan307.github.io/idds-demo/",
+      demoUrl: "https://dentaleducation.hswebstudio.site/",
       image: "assets/images/idds.avif"
     }
   ];
