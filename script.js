@@ -307,7 +307,7 @@
   }
 
   const WHATSAPP_NUMBER = "923312901930";
-  const CONTACT_EMAIL = "hassankhan.mhk11@gmail.com";
+  const CONTACT_EMAIL = "hswebstudio3@gmail.com";
 
   function validateRequiredFields() {
     const requiredFields = $$("#fName, #fEmail, #fPhone, #fMessage", form);
