@@ -92,11 +92,20 @@
       colors: ["#1a3450", "#0b1626"],
       demoUrl: "https://dentaleducation.hswebstudio.site/",
       image: "assets/images/idds.avif"
+    },
+      {
+      title: "ZARÉ GOLD",
+      category: "Jewellery Shop",
+      categoryLabel: "ecommerce",
+      description: "A premium jewellery website concept featuring elegant gold jewellery collections, bridal sets, rings, bangles, and earrings, with a luxurious design, product catalogue, and WhatsApp ordering integration.",
+      colors: ["#1a3450", "#0b1626"],
+      demoUrl: "https://jewellery.hswebstudio.site/",
+      image: "assets/images/gold.jpg"
     }
   ];
 
   /* Simple inline SVG icon per category, used as thumbnail art
-     since real project screenshots aren't wired up yet. */
+     Since real project screenshots aren't wired up yet. */
   const categoryIcons = {
     business: '<svg viewBox="0 0 64 64" fill="none"><rect x="10" y="14" width="44" height="36" rx="4" stroke="#22d3ee" stroke-width="2"/><path d="M10 24h44" stroke="#22d3ee" stroke-width="2"/><circle cx="17" cy="19" r="1.4" fill="#22d3ee"/><circle cx="22" cy="19" r="1.4" fill="#22d3ee"/></svg>',
     healthcare: '<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#22d3ee" stroke-width="2"/><path d="M32 23v18M23 32h18" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round"/></svg>',
