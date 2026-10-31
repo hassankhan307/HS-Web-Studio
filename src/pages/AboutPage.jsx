@@ -7,8 +7,8 @@ export default function AboutPage() {
   return (
     <div style={{ paddingTop: '32px', paddingBottom: '90px' }}>
       <SEO
-        title="About Us | HS Web Studio — Karachi Web Development"
-        description="Learn about HS Web Studio, our Karachi roots, our founder Hassan Khan, and our dedication to crafting modern, high-performance websites and digital solutions."
+        title="About Us | HS Web Studio — Web Development"
+        description="Learn about HS Web Studio, founded by Muhammad Hassan Khan in Karachi, and our approach to building modern, high-performance websites and digital solutions that help businesses grow."
       />
 
       <div className="container">
@@ -70,7 +70,7 @@ export default function AboutPage() {
             </div>
             <h3 style={{ fontSize: '1.3rem', marginBottom: '10px' }}>Our Mission</h3>
             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, fontSize: '0.92rem', margin: 0 }}>
-              To eliminate the gap between ordinary, slow templates and high-revenue digital platforms. We build websites that load instantly on mobile networks, present corporate brands with undeniable prestige, and convert casual visitors into qualified customers.
+              To help businesses establish a stronger digital presence through fast, reliable, and thoughtfully designed websites. We focus on building practical digital solutions that improve customer experience, strengthen brand credibility, and make it easier for businesses to reach their customers.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export default function AboutPage() {
             </div>
             <h3 style={{ fontSize: '1.3rem', marginBottom: '10px' }}>Our Vision</h3>
             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, fontSize: '0.92rem', margin: 0 }}>
-              To be Karachi's most trusted, technically proficient web studio—celebrated for transparent communication, immaculate code standards, and long-term client relationships that continuously drive business success.
+              To become a trusted web development studio in Karachi, known for quality engineering, transparent communication, and lasting relationships with businesses we work with.
             </p>
           </div>
         </div>
@@ -130,12 +130,12 @@ export default function AboutPage() {
                 <span className="badge-dot" />
                 <span>Founder & Lead Engineer</span>
               </div>
-              <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2rem)', marginBottom: '12px' }}>Hassan Khan</h2>
+              <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2rem)', marginBottom: '12px' }}>Muhammad Hassan Khan</h2>
               <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, fontSize: '0.94rem', marginBottom: '14px' }}>
-                With a passion for modern software engineering and commercial design, Hassan founded HS Web Studio to provide retail brands, clinics, and professional practices with high-performance web applications that actually drive inquiries.
+                I founded HS Web Studio with a goal of combining modern software engineering with practical business needs. I work with retail brands, clinics, and professional businesses to build websites and digital solutions that strengthen their online presence and help them connect with more customers.
               </p>
               <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, fontSize: '0.92rem', marginBottom: '22px' }}>
-                &ldquo;A website shouldn't just be an expensive online business card that sits stagnant. It should be your most effective sales asset—working 24/7 to articulate your business value, build immediate trust, and simplify how customers place orders or request quotes.&rdquo;
+                &ldquo;A website shouldn't just be an expensive online business card that sits stagnant. It should be a valuable business tool—working around the clock to present your services, build customer trust, and make it easier for people to connect with your business.&rdquo;
               </p>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
@@ -171,15 +171,15 @@ export default function AboutPage() {
               <h4 style={{ fontSize: '1.05rem', color: 'var(--accent-cyan)' }}>Our Studio Commitments</h4>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
                 <CheckCircle size={15} style={{ color: '#4ade80', flexShrink: 0, marginTop: '3px' }} />
-                <span>We write real, semantic code—no bloated drag-and-drop page builders that slow down your mobile score.</span>
+                <span><strong>Clean Development:</strong> We prioritize structured, maintainable code and performance-focused development.</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
                 <CheckCircle size={15} style={{ color: '#4ade80', flexShrink: 0, marginTop: '3px' }} />
-                <span>We respect your time: honest milestones, frequent updates, and zero communication blackouts.</span>
+                <span><strong>Transparent Communication:</strong> Clear milestones, regular progress updates, and honest project discussions.</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
                 <CheckCircle size={15} style={{ color: '#4ade80', flexShrink: 0, marginTop: '3px' }} />
-                <span>We support what we build: post-launch warranties, DNS assistance, and long-term retainer support.</span>
+                <span><strong>Ongoing Support:</strong> Post-launch assistance, technical guidance, and maintenance options to keep your website running smoothly.</span>
               </div>
             </div>
           </div>

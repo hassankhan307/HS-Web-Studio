@@ -1,17 +1,22 @@
 import { Link } from 'react-router-dom';
 import SectionHeading from '../components/SectionHeading';
-import { Target, Cpu, Layout, Gauge, Wrench, LifeBuoy, ArrowRight } from 'lucide-react';
+import { Target, Cpu, Layout, Gauge, Wrench, LifeBuoy, ArrowRight, ShieldCheck, MessageSquare, Sparkles } from 'lucide-react';
 
 const HIGHLIGHTS = [
   {
-    icon: Target,
-    title: 'Business-Focused Thinking',
-    desc: 'We prioritize your business objectives—generating leads, closing orders, and earning trust—not just writing code.'
+    icon: ShieldCheck,
+    title: 'Clean Development',
+    desc: 'We prioritize structured, maintainable code and performance-focused development for long-term stability.'
   },
   {
-    icon: Cpu,
-    title: 'Modern Architecture',
-    desc: 'Built on clean, scalable foundations like React, Vite, Node, and Shopify for maximum maintainability and zero tech debt.'
+    icon: MessageSquare,
+    title: 'Transparent Communication',
+    desc: 'Clear milestones, regular progress updates, and honest project discussions at every phase of the build.'
+  },
+  {
+    icon: LifeBuoy,
+    title: 'Ongoing Support',
+    desc: 'Post-launch assistance, technical guidance, and maintenance options to keep your website running smoothly.'
   },
   {
     icon: Layout,
@@ -27,24 +32,65 @@ const HIGHLIGHTS = [
     icon: Wrench,
     title: 'Tailored Solutions',
     desc: 'Whether bespoke inventory logic, multi-variant retail matrices, or WhatsApp automations, we build what fits your exact model.'
-  },
-  {
-    icon: LifeBuoy,
-    title: 'Dedicated Support',
-    desc: 'We stand behind our launches with ongoing maintenance, security updates, and dependable technical counsel.'
   }
 ];
 
 export default function About() {
   return (
-    <section className="section" style={{ backgroundColor: 'rgba(10, 17, 34, 0.4)' }}>
+    <section className="section" id="about" style={{ backgroundColor: 'rgba(10, 17, 34, 0.4)' }}>
       <div className="container">
         <SectionHeading
           badge="About HS Web Studio"
           title="Bridging Technical Precision with Commercial Impact"
-          description="HS Web Studio is an independent web development and digital solutions studio based in Karachi, Pakistan. We partner with ambitious local businesses and global brands to design, engineer, and deploy high-performing digital assets."
+          description="HS Web Studio is an independent web studio founded by Muhammad Hassan Khan in Karachi, Pakistan. We focus on building fast, reliable, and thoughtfully designed digital solutions that improve customer experience, strengthen credibility, and help businesses connect with their customers."
         />
 
+        {/* Mission & Vision Quick Cards */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+            gap: '20px',
+            marginBottom: '36px'
+          }}
+        >
+          <div
+            className="card-glass"
+            style={{
+              padding: 'clamp(20px, 3.5vw, 28px)',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--border-medium)',
+              background: 'linear-gradient(135deg, rgba(20, 31, 61, 0.7) 0%, rgba(10, 17, 34, 0.9) 100%)',
+              boxSizing: 'border-box'
+            }}
+          >
+            <h3 style={{ fontSize: '1.2rem', color: 'var(--accent-cyan)', marginBottom: '8px' }}>
+              Our Mission
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.65, margin: 0 }}>
+              To help businesses establish a stronger digital presence through fast, reliable, and thoughtfully designed websites. We focus on building practical digital solutions that improve customer experience, strengthen brand credibility, and make it easier for businesses to reach their customers.
+            </p>
+          </div>
+
+          <div
+            className="card-glass"
+            style={{
+              padding: 'clamp(20px, 3.5vw, 28px)',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--border-subtle)',
+              boxSizing: 'border-box'
+            }}
+          >
+            <h3 style={{ fontSize: '1.2rem', color: '#818cf8', marginBottom: '8px' }}>
+              Our Vision
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.65, margin: 0 }}>
+              To become a trusted web development studio in Karachi, known for quality engineering, transparent communication, and lasting relationships with businesses we work with.
+            </p>
+          </div>
+        </div>
+
+        {/* Studio Highlights Grid */}
         <div
           style={{
             display: 'grid',
@@ -115,7 +161,7 @@ export default function About() {
               Want to learn more about our development ethos and founder story?
             </h3>
             <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.92rem' }}>
-              Explore how we approach client partnerships, quality standards, and digital delivery.
+              Explore Muhammad Hassan Khan&apos;s background, studio philosophy, and how we approach client partnerships.
             </p>
           </div>
           <Link to="/about" className="btn btn-primary" style={{ width: 'min(100%, 280px)' }}>

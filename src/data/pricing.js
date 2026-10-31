@@ -3,6 +3,9 @@ export const pricingPackages = [
     id: "starter",
     name: "Starter Package",
     badge: "Essential",
+    price: "PKR 25,000 – 50,000",
+    priceNote: "indicative range",
+    priceSub: "Ideal for 1–5 page corporate, clinic, or service website",
     audience: "For small businesses, professional practices, and service providers establishing a credible web presence.",
     scope: "Tailored 1–5 page corporate or service website built for speed and lead generation.",
     features: [
@@ -22,6 +25,9 @@ export const pricingPackages = [
     id: "professional",
     name: "Professional Package",
     badge: "Most Popular",
+    price: "Custom Quote",
+    priceNote: "based on scope",
+    priceSub: "Starting from PKR 60,000+ / bespoke requirements",
     audience: "For growing businesses, retail brands, and companies requiring dynamic showcases or turnkey e-commerce.",
     scope: "Comprehensive 5–12 page business platform or full-featured Shopify / E-Commerce store.",
     features: [
@@ -41,6 +47,9 @@ export const pricingPackages = [
     id: "custom",
     name: "Custom / Enterprise",
     badge: "Bespoke Engineering",
+    price: "Bespoke Scope",
+    priceNote: "itemized proposal",
+    priceSub: "Tailored web applications, POS software & API platforms",
     audience: "For enterprises, retail chains, and startups needing bespoke web applications, POS software, or complex systems.",
     scope: "Custom-architected software tailored to your company's proprietary operational workflow.",
     features: [

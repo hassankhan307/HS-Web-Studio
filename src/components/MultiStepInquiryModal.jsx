@@ -13,7 +13,7 @@ const PROJECT_TYPES = [
 ];
 
 const BUDGET_OPTIONS = [
-  'Under Rs 50,000 / < $300 (Starter)',
+  'Rs 25,000 – Rs 50,000 / $100 – $200 (Starter)',
   'Rs 50,000 – Rs 150,000 / $300 – $800 (Standard)',
   'Rs 150,000 – Rs 350,000 / $800 – $1,800 (Growth)',
   'Above Rs 350,000 / > $1,800 (Enterprise)',

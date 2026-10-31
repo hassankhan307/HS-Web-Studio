@@ -285,7 +285,7 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
             value={formData.budget}
             onChange={handleChange}
           >
-            <option>Starter (Under Rs 50,000 / &lt; $300)</option>
+            <option>Starter (Rs 25,000 – Rs 50,000 / $100 – $200)</option>
             <option>Standard (Rs 50,000 – Rs 150,000 / $300 – $800)</option>
             <option>Growth (Rs 150,000 – Rs 350,000 / $800 – $1,800)</option>
             <option>Enterprise / Custom Software (&gt; Rs 350,000 / &gt; $1,800)</option>

@@ -86,6 +86,33 @@ export default function Pricing({ onSelectPackage }) {
                   </p>
                 </div>
 
+                {/* Pricing Display */}
+                <div
+                  style={{
+                    padding: '12px 14px',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: isPopular ? 'rgba(34, 211, 238, 0.08)' : 'rgba(255, 255, 255, 0.03)',
+                    border: isPopular ? '1px solid rgba(34, 211, 238, 0.3)' : '1px solid var(--border-subtle)',
+                    marginBottom: '14px'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
+                    <div style={{ fontSize: '1.25rem', fontWeight: 800, color: isPopular ? 'var(--accent-cyan)' : 'var(--text-primary)', letterSpacing: '-0.01em' }}>
+                      {pkg.price}
+                    </div>
+                    {pkg.priceNote && (
+                      <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-dim)', fontWeight: 600 }}>
+                        {pkg.priceNote}
+                      </span>
+                    )}
+                  </div>
+                  {pkg.priceSub && (
+                    <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                      {pkg.priceSub}
+                    </div>
+                  )}
+                </div>
+
                 {/* Scope Note */}
                 <div
                   style={{

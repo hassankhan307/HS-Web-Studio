@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { Clock, Check, MessageCircle, Sparkles } from 'lucide-react';
 
 const PROJECT_TYPES = [
-  { id: 'business', label: 'Business Website', basePKR: 45000, baseUSD: 280, baseDays: 7, desc: 'Corporate, clinic, agency, or service showcase' },
+  { id: 'business', label: 'Business Website', basePKR: 35000, baseUSD: 160, baseDays: 6, desc: 'Corporate, clinic, agency, or service showcase' },
   { id: 'shopify', label: 'Shopify Store', basePKR: 75000, baseUSD: 450, baseDays: 12, desc: 'D2C store with payment and courier APIs' },
   { id: 'ecommerce', label: 'Custom E-Commerce', basePKR: 95000, baseUSD: 580, baseDays: 16, desc: 'Custom catalogue, cart, and automated order workflows' },
   { id: 'webapp', label: 'Custom Web Application', basePKR: 140000, baseUSD: 850, baseDays: 24, desc: 'Tailored business portal, dashboard, or client system' },
@@ -11,7 +11,7 @@ const PROJECT_TYPES = [
 ];
 
 const SCOPE_TIERS = [
-  { id: 'small', label: '1–3 Pages / Core Landing', mult: 1.0, dayAdd: 0 },
+  { id: 'small', label: '1–3 Pages / Core Landing', mult: 0.85, dayAdd: 0 },
   { id: 'medium', label: '4–7 Pages / Standard Studio', mult: 1.35, dayAdd: 3 },
   { id: 'large', label: '8–15 Pages / Comprehensive', mult: 1.75, dayAdd: 7 },
   { id: 'enterprise', label: '15+ Pages / Multi-department', mult: 2.2, dayAdd: 12 }
