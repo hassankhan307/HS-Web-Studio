@@ -25,6 +25,33 @@ export const projects = [
     deliverables: ["Custom Storefront", "Product Architecture", "Checkout Configuration", "Mobile Optimization"]
   },
   {
+    id: "noir-oud",
+    slug: "noir-oud",
+    title: "Noir & Oud",
+    subtitle: "Haute Parfumerie & Oriental Fragrance E-Commerce",
+    category: "ecommerce",
+    categoryLabel: "Fragrance / E-Commerce",
+    isDemo: true,
+    badgeText: "Demo Concept",
+    demoUrl: "https://purfume.hswebstudio.site/",
+    image: "/assets/images/noir-oud.jpg",
+    colors: ["#c5a059", "#0b0c10"],
+    overview: "NOIR & OUD is an opulent fragrance atelier and luxury e-commerce demonstration designed by HS Web Studio. Engineered for boutique perfumeries, it showcases olfactory fragrance families (Citrus, Woody, Amber, Oud & Musk), longevity and sillage ratings, dynamic bottle sizing, an interactive scent finder, and a streamlined mobile cart.",
+    challenge: "Fragrance is fundamentally experiential and scent-driven. Translating complex olfactory profiles, longevity, and niche exclusivity into a digital storefront requires rich visual storytelling and intuitive note classification that guides shoppers to their signature scent.",
+    approach: "We developed a moody, prestige editorial aesthetic combining deep obsidian and champagne gold accents. We engineered interactive scent profile filters, note pyramids (Top, Heart, Base), real-time bottle size pricing (50ml/100ml), and a WhatsApp Atelier Concierge for personalized fragrance consultations.",
+    features: [
+      "Olfactory family filtering (Fresh & Citrus, Floral, Woody, Amber & Spicy, Oud & Musk)",
+      "Detailed fragrance note pyramids (Top, Heart, and Base notes for every blend)",
+      "Longevity (14+ Hrs) and sillage projection meters displayed on product cards",
+      "Dynamic bottle size selector (50ml & 100ml) with instant pricing calculation",
+      "Slide-out Ajax shopping cart with Cash on Delivery (COD) and express delivery rules",
+      "Interactive 'Find Your Signature Scent' fragrance finder guide",
+      "WhatsApp Atelier Concierge for instant customer fragrance advice in Pakistan"
+    ],
+    technologies: ["JavaScript ES6+", "HTML5 Semantics", "CSS3 Custom Properties", "E-Commerce Architecture", "Mobile UX", "WhatsApp API"],
+    deliverables: ["Luxury UI/UX Concept", "Fragrance Note Architecture", "Product Discovery Filters", "Responsive Mobile Cart Experience"]
+  },
+  {
     id: "aurelia-home",
     slug: "aurelia-home",
     title: "Aurelia Home",

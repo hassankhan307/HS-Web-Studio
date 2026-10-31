@@ -29,7 +29,7 @@ export const faqs = [
   },
   {
     question: "Can I view your previous work and demo concepts?",
-    answer: "Yes! Explore our Portfolio section where you can test live concept builds created for dental clinics, furniture showrooms, restaurants, interior design studios, fine jewellery boutiques, as well as live client projects like Ziphyer."
+    answer: "Yes! Explore our Portfolio section where you can test live concept builds created for dental clinics, furniture showrooms, luxury perfumeries, restaurants, interior design studios, fine jewellery boutiques, as well as live client projects like Ziphyer."
   },
   {
     question: "How do I start a project with HS Web Studio?",
