@@ -39,7 +39,7 @@ export default function ContactPage() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
             gap: '48px',
             alignItems: 'flex-start'
           }}
@@ -49,7 +49,8 @@ export default function ContactPage() {
             <div
               className="card-glass"
               style={{
-                padding: '36px',
+                padding: 'clamp(20px, 4vw, 36px)',
+                boxSizing: 'border-box',
                 borderRadius: 'var(--radius-md)',
                 border: '1px solid var(--border-medium)',
                 marginBottom: '32px'

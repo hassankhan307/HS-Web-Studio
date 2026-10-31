@@ -10,42 +10,40 @@ export default function WhatsAppButton() {
 
   return (
     <div
+      className="wa-floating-container"
       style={{
         position: 'fixed',
-        bottom: '28px',
-        left: '28px',
         zIndex: 95,
         display: 'flex',
         alignItems: 'center',
-        gap: '12px'
+        gap: '10px'
       }}
     >
-      {/* Floating Prompt Pill */}
+      {/* Desktop-only Prompt Pill */}
       {!tooltipDismissed && (
         <div
+          className="desktop-only"
           style={{
             background: 'rgba(10, 17, 34, 0.95)',
             border: '1px solid rgba(34, 211, 238, 0.3)',
             borderRadius: '9999px',
-            padding: '8px 14px',
-            fontSize: '0.82rem',
+            padding: '7px 12px',
+            fontSize: '0.8rem',
             color: 'var(--text-primary)',
             boxShadow: 'var(--shadow-md)',
             backdropFilter: 'blur(10px)',
-            display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            animation: 'fadeIn 0.5s ease'
+            gap: '8px'
           }}
-          className="desktop-only"
         >
           <span
             style={{
-              width: '8px',
-              height: '8px',
+              width: '7px',
+              height: '7px',
               borderRadius: '50%',
               backgroundColor: '#22c55e',
-              boxShadow: '0 0 8px #22c55e'
+              boxShadow: '0 0 8px #22c55e',
+              flexShrink: 0
             }}
           />
           <span>Online · Chat with us</span>
@@ -60,7 +58,7 @@ export default function WhatsAppButton() {
               cursor: 'pointer'
             }}
           >
-            <X size={13} />
+            <X size={12} />
           </button>
         </div>
       )}
@@ -71,43 +69,58 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact HS Web Studio on WhatsApp"
+        className="wa-btn-circle"
         style={{
-          width: '54px',
-          height: '54px',
           borderRadius: '50%',
           background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
           color: '#ffffff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 6px 22px rgba(37, 211, 102, 0.45)',
-          transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          boxShadow: '0 4px 18px rgba(37, 211, 102, 0.45)',
           position: 'relative',
           textDecoration: 'none'
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'scale(1.08) translateY(-2px)';
-          e.currentTarget.style.boxShadow = '0 10px 28px rgba(37, 211, 102, 0.6)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'scale(1) translateY(0)';
-          e.currentTarget.style.boxShadow = '0 6px 22px rgba(37, 211, 102, 0.45)';
-        }}
       >
-        <MessageCircle size={28} />
+        <MessageCircle size={26} />
         <span
           style={{
             position: 'absolute',
             top: '2px',
             right: '2px',
-            width: '12px',
-            height: '12px',
+            width: '10px',
+            height: '10px',
             borderRadius: '50%',
             backgroundColor: '#ffffff',
             border: '2px solid #25D366'
           }}
         />
       </a>
+
+      <style>{`
+        .wa-floating-container {
+          bottom: 24px;
+          left: 24px;
+        }
+        .wa-btn-circle {
+          width: 52px;
+          height: 52px;
+        }
+        @media (max-width: 768px) {
+          .wa-floating-container {
+            bottom: 16px !important;
+            left: 16px !important;
+          }
+          .wa-btn-circle {
+            width: 46px !important;
+            height: 46px !important;
+          }
+          .wa-btn-circle svg {
+            width: 22px !important;
+            height: 22px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

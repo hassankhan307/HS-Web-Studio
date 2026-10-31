@@ -23,7 +23,8 @@ export default function NotFound() {
         className="card-glass"
         style={{
           maxWidth: '560px',
-          padding: '48px 36px',
+          padding: 'clamp(24px, 5vw, 48px) clamp(16px, 4vw, 36px)',
+          boxSizing: 'border-box',
           borderRadius: 'var(--radius-lg)',
           border: '1px solid var(--border-medium)',
           boxShadow: 'var(--shadow-lg)'

@@ -6,22 +6,24 @@ export default function Hero({ onOpenQuoteModal }) {
     <section
       style={{
         position: 'relative',
-        paddingTop: '60px',
-        paddingBottom: '110px',
-        overflow: 'hidden'
+        paddingTop: 'clamp(32px, 6vw, 64px)',
+        paddingBottom: 'clamp(56px, 8vw, 110px)',
+        overflow: 'hidden',
+        width: '100%',
+        maxWidth: '100%'
       }}
     >
-      {/* Ambient background glows */}
+      {/* Safe Ambient background glow (constrained to 100% max-width) */}
       <div
         style={{
           position: 'absolute',
-          top: '-120px',
+          top: '-80px',
           left: '50%',
           transform: 'translateX(-50%)',
-          width: '720px',
-          height: '420px',
-          background: 'radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, rgba(59, 130, 246, 0.08) 45%, transparent 70%)',
-          filter: 'blur(60px)',
+          width: 'min(100%, 640px)',
+          height: '360px',
+          background: 'radial-gradient(circle, rgba(34, 211, 238, 0.14) 0%, rgba(59, 130, 246, 0.06) 50%, transparent 70%)',
+          filter: 'blur(50px)',
           pointerEvents: 'none',
           zIndex: 0
         }}
@@ -31,13 +33,13 @@ export default function Hero({ onOpenQuoteModal }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '60px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))',
+            gap: 'clamp(36px, 6vw, 64px)',
             alignItems: 'center'
           }}
         >
           {/* Left Text Column */}
-          <div>
+          <div style={{ width: '100%', maxWidth: '100%' }}>
             {/* Location & Studio Badge */}
             <div
               style={{
@@ -49,10 +51,12 @@ export default function Hero({ onOpenQuoteModal }) {
                 backgroundColor: 'rgba(34, 211, 238, 0.1)',
                 border: '1px solid rgba(34, 211, 238, 0.3)',
                 color: 'var(--accent-cyan)',
-                fontSize: '0.84rem',
+                fontSize: '0.8rem',
                 fontWeight: 600,
                 letterSpacing: '0.03em',
-                marginBottom: '24px'
+                marginBottom: '20px',
+                maxWidth: '100%',
+                flexWrap: 'wrap'
               }}
             >
               <span
@@ -61,7 +65,8 @@ export default function Hero({ onOpenQuoteModal }) {
                   height: '8px',
                   borderRadius: '50%',
                   backgroundColor: 'var(--accent-cyan)',
-                  boxShadow: '0 0 10px var(--accent-cyan)'
+                  boxShadow: '0 0 10px var(--accent-cyan)',
+                  flexShrink: 0
                 }}
               />
               <span>Web Development Studio · Karachi, Pakistan</span>
@@ -70,12 +75,12 @@ export default function Hero({ onOpenQuoteModal }) {
             {/* Main Headline */}
             <h1
               style={{
-                fontSize: 'clamp(2.4rem, 4.8vw, 3.8rem)',
+                fontSize: 'clamp(2rem, 5.2vw, 3.6rem)',
                 fontWeight: 800,
-                lineHeight: 1.15,
+                lineHeight: 1.16,
                 letterSpacing: '-0.03em',
                 color: 'var(--text-primary)',
-                marginBottom: '22px'
+                marginBottom: '18px'
               }}
             >
               Digital Experiences That Move{' '}
@@ -85,36 +90,37 @@ export default function Hero({ onOpenQuoteModal }) {
             {/* Supporting Description */}
             <p
               style={{
-                fontSize: 'clamp(1.05rem, 1.4vw, 1.2rem)',
+                fontSize: 'clamp(0.98rem, 1.4vw, 1.15rem)',
                 color: 'var(--text-muted)',
                 lineHeight: 1.7,
-                marginBottom: '36px',
+                marginBottom: '32px',
                 maxWidth: '560px'
               }}
             >
               We engineer bespoke websites, powerful e-commerce storefronts, and custom web applications that empower ambitious businesses to establish market authority and turn visitors into paying customers.
             </p>
 
-            {/* Action CTAs */}
+            {/* Action CTAs - Responsive button stack */}
             <div
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '14px',
+                gap: '12px',
                 alignItems: 'center',
-                marginBottom: '40px'
+                marginBottom: '36px',
+                width: '100%'
               }}
             >
               <button
                 onClick={onOpenQuoteModal}
-                className="btn btn-primary btn-lg"
+                className="btn btn-primary btn-lg hero-cta-btn"
                 style={{ cursor: 'pointer' }}
               >
                 <Sparkles size={18} />
                 <span>Start a Project</span>
               </button>
 
-              <Link to="/portfolio" className="btn btn-ghost btn-lg">
+              <Link to="/portfolio" className="btn btn-ghost btn-lg hero-cta-btn">
                 <span>Explore Our Work</span>
                 <ArrowRight size={16} />
               </Link>
@@ -125,52 +131,51 @@ export default function Hero({ onOpenQuoteModal }) {
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '20px',
-                paddingTop: '24px',
+                gap: '14px 20px',
+                paddingTop: '20px',
                 borderTop: '1px solid var(--border-subtle)',
                 color: 'var(--text-secondary)',
-                fontSize: '0.86rem',
+                fontSize: '0.84rem',
                 fontWeight: 600
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Smartphone size={16} style={{ color: 'var(--accent-cyan)' }} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Smartphone size={15} style={{ color: 'var(--accent-cyan)' }} />
                 <span>Mobile-First</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Zap size={16} style={{ color: 'var(--accent-cyan)' }} />
-                <span>Lightning Fast</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Zap size={15} style={{ color: 'var(--accent-cyan)' }} />
+                <span>Fast & Optimized</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <ShieldCheck size={16} style={{ color: 'var(--accent-cyan)' }} />
-                <span>Production Clean</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <ShieldCheck size={15} style={{ color: 'var(--accent-cyan)' }} />
+                <span>Custom Clean Code</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={16} style={{ color: 'var(--accent-cyan)' }} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <CheckCircle2 size={15} style={{ color: 'var(--accent-cyan)' }} />
                 <span>Business-Focused</span>
               </div>
             </div>
           </div>
 
-          {/* Right Visual Composition: Multi-Device Agency Mockup */}
+          {/* Right Visual Composition: Multi-Device Agency Mockup (100% Mobile Safe) */}
           <div
             style={{
               position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
+              width: '100%',
+              maxWidth: '520px',
+              margin: '0 auto'
             }}
           >
-            {/* Main Desktop Mockup Frame */}
+            {/* Desktop / Tablet Mockup Container */}
             <div
               className="card-glass"
               style={{
                 width: '100%',
-                maxWidth: '540px',
                 borderRadius: 'var(--radius-md)',
                 overflow: 'hidden',
                 border: '1px solid var(--border-medium)',
-                boxShadow: 'var(--shadow-lg), 0 0 45px rgba(34, 211, 238, 0.15)',
+                boxShadow: 'var(--shadow-lg), 0 0 35px rgba(34, 211, 238, 0.12)',
                 backgroundColor: 'rgba(10, 17, 34, 0.95)'
               }}
             >
@@ -180,26 +185,29 @@ export default function Hero({ onOpenQuoteModal }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
-                  padding: '12px 18px',
-                  backgroundColor: 'rgba(5, 7, 15, 0.8)',
+                  padding: '10px 14px',
+                  backgroundColor: 'rgba(5, 7, 15, 0.85)',
                   borderBottom: '1px solid var(--border-subtle)'
                 }}
               >
                 <div style={{ display: 'flex', gap: '6px' }}>
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#eab308' }} />
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#22c55e' }} />
+                  <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                  <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#eab308' }} />
+                  <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#22c55e' }} />
                 </div>
                 <div
                   style={{
                     flexGrow: 1,
                     textAlign: 'center',
                     backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                    padding: '3px 12px',
+                    padding: '3px 8px',
                     borderRadius: 'var(--radius-xs)',
-                    fontSize: '0.75rem',
+                    fontSize: '0.72rem',
                     color: 'var(--text-dim)',
-                    fontFamily: 'var(--font-mono)'
+                    fontFamily: 'var(--font-mono)',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap'
                   }}
                 >
                   https://hswebstudio.site
@@ -207,129 +215,69 @@ export default function Hero({ onOpenQuoteModal }) {
               </div>
 
               {/* Inside Mockup Screen */}
-              <div style={{ padding: '24px' }}>
+              <div style={{ padding: 'clamp(16px, 3vw, 24px)' }}>
                 {/* Mock Nav */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div style={{ width: '22px', height: '22px', borderRadius: '6px', backgroundColor: 'var(--accent-cyan)' }} />
-                    <div style={{ width: '80px', height: '10px', borderRadius: '4px', backgroundColor: 'rgba(255, 255, 255, 0.4)' }} />
+                    <div style={{ width: '18px', height: '18px', borderRadius: '4px', backgroundColor: 'var(--accent-cyan)' }} />
+                    <div style={{ width: '70px', height: '8px', borderRadius: '4px', backgroundColor: 'rgba(255, 255, 255, 0.4)' }} />
                   </div>
-                  <div style={{ display: 'flex', gap: '10px' }}>
-                    <div style={{ width: '40px', height: '8px', borderRadius: '4px', backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
-                    <div style={{ width: '40px', height: '8px', borderRadius: '4px', backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
-                    <div style={{ width: '60px', height: '18px', borderRadius: '4px', backgroundColor: 'var(--accent-cyan-dim)', border: '1px solid var(--accent-cyan)' }} />
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <div style={{ width: '32px', height: '8px', borderRadius: '4px', backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
+                    <div style={{ width: '48px', height: '16px', borderRadius: '4px', backgroundColor: 'var(--accent-cyan-dim)', border: '1px solid var(--accent-cyan)' }} />
                   </div>
                 </div>
 
-                {/* Mock Hero Banner */}
+                {/* Live Client Showcase Feature within Mockup */}
                 <div
                   style={{
-                    padding: '24px',
+                    padding: '16px',
                     borderRadius: 'var(--radius-sm)',
-                    background: 'linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%)',
-                    border: '1px solid rgba(34, 211, 238, 0.2)',
-                    marginBottom: '20px'
+                    background: 'linear-gradient(135deg, rgba(34, 211, 238, 0.12) 0%, rgba(59, 130, 246, 0.1) 100%)',
+                    border: '1px solid rgba(34, 211, 238, 0.25)',
+                    marginBottom: '16px'
                   }}
                 >
-                  <div style={{ width: '70%', height: '18px', borderRadius: '4px', backgroundColor: 'var(--text-primary)', marginBottom: '10px' }} />
-                  <div style={{ width: '90%', height: '10px', borderRadius: '4px', backgroundColor: 'var(--text-dim)', marginBottom: '6px' }} />
-                  <div style={{ width: '50%', height: '10px', borderRadius: '4px', backgroundColor: 'var(--text-dim)', marginBottom: '16px' }} />
-                  <div style={{ width: '100px', height: '28px', borderRadius: '6px', backgroundColor: 'var(--accent-cyan)' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '0.72rem', color: '#4ade80', fontWeight: 700 }}>● Live Client Store</span>
+                    <span style={{ fontSize: '0.68rem', color: 'var(--text-dim)' }}>Shopify Retail</span>
+                  </div>
+                  <div style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
+                    Ziphyer Fashion
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                    High-conversion D2C storefront with fast mobile checkout & local courier delivery.
+                  </div>
                 </div>
 
                 {/* Mock Cards Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                  <div style={{ padding: '14px', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-subtle)' }}>
-                    <div style={{ width: '20px', height: '20px', borderRadius: '4px', backgroundColor: 'var(--accent-cyan-dim)', marginBottom: '8px' }} />
-                    <div style={{ width: '80%', height: '8px', borderRadius: '3px', backgroundColor: 'rgba(255, 255, 255, 0.5)', marginBottom: '6px' }} />
-                    <div style={{ width: '60%', height: '6px', borderRadius: '3px', backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                  <div style={{ padding: '10px 8px', borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-subtle)' }}>
+                    <div style={{ fontSize: '0.68rem', color: 'var(--accent-cyan)', fontWeight: 700 }}>Speed</div>
+                    <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>99/100</div>
                   </div>
-                  <div style={{ padding: '14px', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-subtle)' }}>
-                    <div style={{ width: '20px', height: '20px', borderRadius: '4px', backgroundColor: 'rgba(59, 130, 246, 0.2)', marginBottom: '8px' }} />
-                    <div style={{ width: '80%', height: '8px', borderRadius: '3px', backgroundColor: 'rgba(255, 255, 255, 0.5)', marginBottom: '6px' }} />
-                    <div style={{ width: '60%', height: '6px', borderRadius: '3px', backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
+                  <div style={{ padding: '10px 8px', borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-subtle)' }}>
+                    <div style={{ fontSize: '0.68rem', color: '#60a5fa', fontWeight: 700 }}>Design</div>
+                    <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>Custom</div>
                   </div>
-                  <div style={{ padding: '14px', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-subtle)' }}>
-                    <div style={{ width: '20px', height: '20px', borderRadius: '4px', backgroundColor: 'rgba(99, 102, 241, 0.2)', marginBottom: '8px' }} />
-                    <div style={{ width: '80%', height: '8px', borderRadius: '3px', backgroundColor: 'rgba(255, 255, 255, 0.5)', marginBottom: '6px' }} />
-                    <div style={{ width: '60%', height: '6px', borderRadius: '3px', backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
+                  <div style={{ padding: '10px 8px', borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-subtle)' }}>
+                    <div style={{ fontSize: '0.68rem', color: '#4ade80', fontWeight: 700 }}>WhatsApp</div>
+                    <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>Direct</div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Floating Mobile Phone Mockup Overlay */}
-            <div
-              className="card-glass desktop-only"
-              style={{
-                position: 'absolute',
-                bottom: '-28px',
-                right: '-18px',
-                width: '180px',
-                borderRadius: '24px',
-                backgroundColor: 'rgba(5, 7, 15, 0.98)',
-                border: '2px solid var(--border-accent)',
-                padding: '14px 12px',
-                boxShadow: 'var(--shadow-lg), 0 0 25px rgba(34, 211, 238, 0.2)',
-                zIndex: 2
-              }}
-            >
-              {/* Phone Notch */}
-              <div style={{ width: '48px', height: '6px', borderRadius: '3px', backgroundColor: 'var(--border-subtle)', margin: '0 auto 12px auto' }} />
-              {/* Phone Content */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <div style={{ width: '60%', height: '8px', borderRadius: '4px', backgroundColor: 'var(--accent-cyan)' }} />
-                <div style={{ width: '90%', height: '6px', borderRadius: '3px', backgroundColor: 'var(--text-dim)' }} />
-                <div style={{ padding: '10px', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.04)', marginTop: '4px' }}>
-                  <div style={{ fontSize: '0.68rem', color: '#4ade80', fontWeight: 700 }}>● Live Client Store</div>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>Ziphyer Fashion</div>
-                </div>
-                <div style={{ width: '100%', height: '22px', borderRadius: '6px', backgroundColor: 'var(--accent-cyan)', marginTop: '4px' }} />
-              </div>
-            </div>
-
-            {/* Floating Performance Pill */}
-            <div
-              className="card-glass desktop-only"
-              style={{
-                position: 'absolute',
-                top: '-18px',
-                left: '-20px',
-                padding: '10px 16px',
-                borderRadius: 'var(--radius-full)',
-                backgroundColor: 'rgba(10, 17, 34, 0.95)',
-                border: '1px solid rgba(34, 211, 238, 0.4)',
-                boxShadow: 'var(--shadow-md)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                zIndex: 2
-              }}
-            >
-              <div
-                style={{
-                  width: '28px',
-                  height: '28px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(34, 197, 94, 0.2)',
-                  color: '#4ade80',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.78rem',
-                  fontWeight: 800
-                }}
-              >
-                99
-              </div>
-              <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-primary)' }}>Google PageSpeed</div>
-                <div style={{ fontSize: '0.68rem', color: 'var(--text-dim)' }}>Core Web Vitals Pass</div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 520px) {
+          .hero-cta-btn {
+            width: 100% !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

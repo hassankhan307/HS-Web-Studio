@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Sparkles, ExternalLink, Calculator } from 'lucide-react';
+import { Menu, X, ChevronDown, Sparkles, MessageCircle, Calculator } from 'lucide-react';
 import { services } from '../data/services';
 
 export default function Navbar({ onOpenQuoteModal }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropdownRef = useRef(null);
   const location = useLocation();
 
@@ -22,6 +23,7 @@ export default function Navbar({ onOpenQuoteModal }) {
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
+    setMobileServicesOpen(false);
   }, [location.pathname]);
 
   // Click outside to close services dropdown
@@ -35,15 +37,18 @@ export default function Navbar({ onOpenQuoteModal }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
+  // Prevent background scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [mobileMenuOpen]);
 
@@ -54,12 +59,14 @@ export default function Navbar({ onOpenQuoteModal }) {
         top: 0,
         left: 0,
         right: 0,
+        width: '100%',
+        maxWidth: '100%',
         zIndex: 100,
-        backgroundColor: scrolled ? 'rgba(5, 7, 15, 0.92)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
-        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+        backgroundColor: scrolled || mobileMenuOpen ? 'rgba(5, 7, 15, 0.96)' : 'rgba(5, 7, 15, 0.75)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: scrolled || mobileMenuOpen ? '1px solid var(--border-subtle)' : '1px solid transparent',
+        transition: 'all 0.25s ease'
       }}
     >
       <div
@@ -78,17 +85,18 @@ export default function Navbar({ onOpenQuoteModal }) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '12px',
-            textDecoration: 'none'
+            gap: '10px',
+            textDecoration: 'none',
+            flexShrink: 0
           }}
-          aria-label="HS Web Studio Homepage"
+          aria-label="HS Web Studio Home"
         >
           <img
             src="/assets/images/logo.png"
             alt="HS Web Studio Logo"
             style={{
-              width: '38px',
-              height: '38px',
+              width: '34px',
+              height: '34px',
               objectFit: 'contain',
               borderRadius: '8px'
             }}
@@ -96,7 +104,7 @@ export default function Navbar({ onOpenQuoteModal }) {
           <span
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: '1.28rem',
+              fontSize: '1.18rem',
               fontWeight: 800,
               letterSpacing: '-0.02em',
               color: 'var(--text-primary)'
@@ -106,13 +114,12 @@ export default function Navbar({ onOpenQuoteModal }) {
           </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links (hidden on mobile via CSS) */}
         <nav
-          className="desktop-nav"
+          className="desktop-only"
           style={{
-            display: 'flex',
             alignItems: 'center',
-            gap: '28px'
+            gap: '24px'
           }}
           aria-label="Main Navigation"
         >
@@ -120,10 +127,9 @@ export default function Navbar({ onOpenQuoteModal }) {
             to="/"
             end
             style={({ isActive }) => ({
-              fontSize: '0.94rem',
+              fontSize: '0.92rem',
               fontWeight: 500,
-              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-              transition: 'color var(--transition-fast)'
+              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)'
             })}
           >
             Home
@@ -132,10 +138,9 @@ export default function Navbar({ onOpenQuoteModal }) {
           <NavLink
             to="/about"
             style={({ isActive }) => ({
-              fontSize: '0.94rem',
+              fontSize: '0.92rem',
               fontWeight: 500,
-              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-              transition: 'color var(--transition-fast)'
+              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)'
             })}
           >
             About
@@ -155,7 +160,7 @@ export default function Navbar({ onOpenQuoteModal }) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '5px',
-                fontSize: '0.94rem',
+                fontSize: '0.92rem',
                 fontWeight: 500,
                 color: location.pathname.startsWith('/services')
                   ? 'var(--accent-cyan)'
@@ -166,7 +171,7 @@ export default function Navbar({ onOpenQuoteModal }) {
             >
               <span>Services</span>
               <ChevronDown
-                size={15}
+                size={14}
                 style={{
                   transform: servicesDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                   transition: 'transform 0.2s ease'
@@ -182,19 +187,18 @@ export default function Navbar({ onOpenQuoteModal }) {
                   top: '100%',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  width: '320px',
+                  width: '300px',
                   backgroundColor: 'rgba(10, 17, 34, 0.98)',
                   backdropFilter: 'blur(20px)',
                   WebkitBackdropFilter: 'blur(20px)',
                   border: '1px solid var(--border-medium)',
                   borderRadius: 'var(--radius-md)',
                   boxShadow: 'var(--shadow-lg), 0 0 25px rgba(34, 211, 238, 0.1)',
-                  padding: '12px',
+                  padding: '10px',
                   zIndex: 110,
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '4px',
-                  animation: 'dropdownFadeIn 0.2s ease'
+                  gap: '4px'
                 }}
               >
                 <Link
@@ -202,11 +206,10 @@ export default function Navbar({ onOpenQuoteModal }) {
                   style={{
                     padding: '8px 12px',
                     borderRadius: 'var(--radius-sm)',
-                    fontSize: '0.85rem',
+                    fontSize: '0.82rem',
                     fontWeight: 700,
                     color: 'var(--accent-cyan)',
                     backgroundColor: 'rgba(34, 211, 238, 0.08)',
-                    marginBottom: '4px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between'
@@ -223,7 +226,7 @@ export default function Navbar({ onOpenQuoteModal }) {
                     style={{
                       padding: '8px 12px',
                       borderRadius: 'var(--radius-sm)',
-                      fontSize: '0.88rem',
+                      fontSize: '0.85rem',
                       color:
                         location.pathname === `/services/${srv.slug}`
                           ? 'var(--accent-cyan)'
@@ -231,35 +234,11 @@ export default function Navbar({ onOpenQuoteModal }) {
                       backgroundColor:
                         location.pathname === `/services/${srv.slug}`
                           ? 'rgba(34, 211, 238, 0.1)'
-                          : 'transparent',
-                      transition: 'all 0.15s ease',
-                      display: 'block'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                      e.currentTarget.style.color = 'var(--text-primary)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor =
-                        location.pathname === `/services/${srv.slug}`
-                          ? 'rgba(34, 211, 238, 0.1)'
-                          : 'transparent';
-                      e.currentTarget.style.color =
-                        location.pathname === `/services/${srv.slug}`
-                          ? 'var(--accent-cyan)'
-                          : 'var(--text-secondary)';
+                          : 'transparent'
                     }}
                   >
                     <div style={{ fontWeight: 600 }}>{srv.shortTitle}</div>
-                    <div
-                      style={{
-                        fontSize: '0.75rem',
-                        color: 'var(--text-dim)',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                      }}
-                    >
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
                       {srv.eyebrow}
                     </div>
                   </Link>
@@ -271,10 +250,9 @@ export default function Navbar({ onOpenQuoteModal }) {
           <NavLink
             to="/portfolio"
             style={({ isActive }) => ({
-              fontSize: '0.94rem',
+              fontSize: '0.92rem',
               fontWeight: 500,
-              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-              transition: 'color var(--transition-fast)'
+              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)'
             })}
           >
             Portfolio
@@ -283,58 +261,55 @@ export default function Navbar({ onOpenQuoteModal }) {
           <NavLink
             to="/estimator"
             style={({ isActive }) => ({
-              fontSize: '0.94rem',
+              fontSize: '0.92rem',
               fontWeight: 500,
               color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-              transition: 'color var(--transition-fast)',
               display: 'flex',
               alignItems: 'center',
               gap: '6px'
             })}
           >
             <Calculator size={14} style={{ color: 'var(--accent-cyan)' }} />
-            <span>Cost Estimator</span>
+            <span>Estimator</span>
           </NavLink>
 
           <NavLink
             to="/contact"
             style={({ isActive }) => ({
-              fontSize: '0.94rem',
+              fontSize: '0.92rem',
               fontWeight: 500,
-              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-              transition: 'color var(--transition-fast)'
+              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)'
             })}
           >
             Contact
           </NavLink>
         </nav>
 
-        {/* Action Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        {/* Right Action Buttons */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <button
             onClick={onOpenQuoteModal}
             className="btn btn-primary btn-sm desktop-only"
             style={{ cursor: 'pointer' }}
           >
-            <Sparkles size={15} />
+            <Sparkles size={14} />
             <span>Get a Quote</span>
           </button>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Hamburger Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="mobile-toggle"
+            className="mobile-only"
             aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
             aria-expanded={mobileMenuOpen}
             style={{
-              display: 'none',
               alignItems: 'center',
               justifyContent: 'center',
               width: '42px',
               height: '42px',
               borderRadius: 'var(--radius-sm)',
               backgroundColor: 'var(--bg-surface-alt)',
-              border: '1px solid var(--border-subtle)',
+              border: '1px solid var(--border-medium)',
               color: 'var(--text-primary)',
               cursor: 'pointer'
             }}
@@ -344,34 +319,36 @@ export default function Navbar({ onOpenQuoteModal }) {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Full-Screen Drawer Menu */}
       {mobileMenuOpen && (
         <div
           style={{
             position: 'fixed',
             top: 'var(--nav-height)',
             left: 0,
-            right: 0,
-            bottom: 0,
+            width: '100%',
+            height: 'calc(100vh - var(--nav-height))',
             backgroundColor: 'rgba(5, 7, 15, 0.98)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
             borderTop: '1px solid var(--border-subtle)',
-            zIndex: 99,
-            padding: '24px',
+            zIndex: 999,
+            padding: '20px 18px',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
-            gap: '20px'
+            gap: '16px',
+            boxSizing: 'border-box'
           }}
         >
           <NavLink
             to="/"
             end
+            onClick={() => setMobileMenuOpen(false)}
             style={({ isActive }) => ({
               fontSize: '1.15rem',
               fontWeight: 600,
-              padding: '10px 0',
+              padding: '12px 0',
               borderBottom: '1px solid var(--border-subtle)',
               color: isActive ? 'var(--accent-cyan)' : 'var(--text-primary)'
             })}
@@ -381,10 +358,11 @@ export default function Navbar({ onOpenQuoteModal }) {
 
           <NavLink
             to="/about"
+            onClick={() => setMobileMenuOpen(false)}
             style={({ isActive }) => ({
               fontSize: '1.15rem',
               fontWeight: 600,
-              padding: '10px 0',
+              padding: '12px 0',
               borderBottom: '1px solid var(--border-subtle)',
               color: isActive ? 'var(--accent-cyan)' : 'var(--text-primary)'
             })}
@@ -393,61 +371,79 @@ export default function Navbar({ onOpenQuoteModal }) {
           </NavLink>
 
           {/* Mobile Services Accordion */}
-          <div>
+          <div style={{ borderBottom: '1px solid var(--border-subtle)', paddingBottom: '12px' }}>
             <div
+              onClick={() => setMobileServicesOpen((prev) => !prev)}
               style={{
                 fontSize: '1.15rem',
                 fontWeight: 600,
-                padding: '10px 0',
+                padding: '12px 0',
                 color: 'var(--text-primary)',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                cursor: 'pointer'
               }}
             >
               <span>Services</span>
-              <Link
-                to="/services"
+              <ChevronDown
+                size={18}
                 style={{
-                  fontSize: '0.85rem',
-                  color: 'var(--accent-cyan)',
-                  fontWeight: 600
+                  transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.2s ease',
+                  color: 'var(--accent-cyan)'
+                }}
+              />
+            </div>
+
+            {mobileServicesOpen && (
+              <div
+                style={{
+                  paddingLeft: '12px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  marginTop: '6px'
                 }}
               >
-                View All
-              </Link>
-            </div>
-            <div
-              style={{
-                paddingLeft: '14px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '10px',
-                marginTop: '6px'
-              }}
-            >
-              {services.map((srv) => (
                 <Link
-                  key={srv.slug}
-                  to={`/services/${srv.slug}`}
+                  to="/services"
+                  onClick={() => setMobileMenuOpen(false)}
                   style={{
-                    fontSize: '0.92rem',
-                    color: 'var(--text-secondary)',
+                    fontSize: '0.88rem',
+                    color: 'var(--accent-cyan)',
+                    fontWeight: 700,
                     padding: '6px 0'
                   }}
                 >
-                  {srv.title}
+                  All Services Overview &rarr;
                 </Link>
-              ))}
-            </div>
+                {services.map((srv) => (
+                  <Link
+                    key={srv.slug}
+                    to={`/services/${srv.slug}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={{
+                      fontSize: '0.92rem',
+                      color: 'var(--text-secondary)',
+                      padding: '8px 0',
+                      borderBottom: '1px solid rgba(255, 255, 255, 0.03)'
+                    }}
+                  >
+                    {srv.title}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           <NavLink
             to="/portfolio"
+            onClick={() => setMobileMenuOpen(false)}
             style={({ isActive }) => ({
               fontSize: '1.15rem',
               fontWeight: 600,
-              padding: '10px 0',
+              padding: '12px 0',
               borderBottom: '1px solid var(--border-subtle)',
               color: isActive ? 'var(--accent-cyan)' : 'var(--text-primary)'
             })}
@@ -457,10 +453,11 @@ export default function Navbar({ onOpenQuoteModal }) {
 
           <NavLink
             to="/estimator"
+            onClick={() => setMobileMenuOpen(false)}
             style={({ isActive }) => ({
               fontSize: '1.15rem',
               fontWeight: 600,
-              padding: '10px 0',
+              padding: '12px 0',
               borderBottom: '1px solid var(--border-subtle)',
               color: isActive ? 'var(--accent-cyan)' : 'var(--text-primary)',
               display: 'flex',
@@ -474,27 +471,29 @@ export default function Navbar({ onOpenQuoteModal }) {
 
           <NavLink
             to="/contact"
+            onClick={() => setMobileMenuOpen(false)}
             style={({ isActive }) => ({
               fontSize: '1.15rem',
               fontWeight: 600,
-              padding: '10px 0',
+              padding: '12px 0',
               borderBottom: '1px solid var(--border-subtle)',
               color: isActive ? 'var(--accent-cyan)' : 'var(--text-primary)'
             })}
           >
-            Contact Us
+            Contact
           </NavLink>
 
-          <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {/* Mobile Bottom CTA Action Stack */}
+          <div style={{ marginTop: 'auto', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenQuoteModal();
               }}
-              className="btn btn-primary"
+              className="btn btn-primary btn-lg"
               style={{ width: '100%' }}
             >
-              <Sparkles size={16} />
+              <Sparkles size={18} />
               <span>Get a Free Quote</span>
             </button>
 
@@ -502,27 +501,15 @@ export default function Navbar({ onOpenQuoteModal }) {
               href="https://wa.me/923312901930"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-whatsapp"
+              className="btn btn-whatsapp btn-lg"
               style={{ width: '100%' }}
             >
-              <span>Chat on WhatsApp (+92 331 2901930)</span>
+              <MessageCircle size={18} />
+              <span>WhatsApp (+92 331 2901930)</span>
             </a>
           </div>
         </div>
       )}
-
-      {/* Responsive Style Overrides */}
-      <style>{`
-        @media (max-width: 992px) {
-          .desktop-nav { display: none !important; }
-          .desktop-only { display: none !important; }
-          .mobile-toggle { display: flex !important; }
-        }
-        @keyframes dropdownFadeIn {
-          from { opacity: 0; transform: translate(-50%, -8px); }
-          to { opacity: 1; transform: translate(-50%, 0); }
-        }
-      `}</style>
     </header>
   );
 }

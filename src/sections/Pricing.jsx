@@ -1,6 +1,6 @@
 import SectionHeading from '../components/SectionHeading';
 import { pricingPackages } from '../data/pricing';
-import { Check, Sparkles, ArrowRight, MessageCircle } from 'lucide-react';
+import { Check, Sparkles, MessageCircle } from 'lucide-react';
 
 export default function Pricing({ onSelectPackage }) {
   return (
@@ -12,14 +12,14 @@ export default function Pricing({ onSelectPackage }) {
           description="We tailor every engagement to your exact functional scope. Choose a structured tier below or request an itemized proposal for custom requirements."
         />
 
-        {/* Pricing Cards Grid */}
+        {/* Responsive Pricing Cards Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))',
-            gap: '28px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: 'clamp(20px, 3vw, 28px)',
             alignItems: 'stretch',
-            marginBottom: '40px'
+            marginBottom: '36px'
           }}
         >
           {pricingPackages.map((pkg) => {
@@ -30,7 +30,7 @@ export default function Pricing({ onSelectPackage }) {
                 key={pkg.id}
                 className="card-glass"
                 style={{
-                  padding: '36px 30px',
+                  padding: 'clamp(22px, 4vw, 36px) clamp(18px, 3vw, 28px)',
                   borderRadius: 'var(--radius-md)',
                   border: isPopular ? '2px solid var(--accent-cyan)' : '1px solid var(--border-subtle)',
                   backgroundColor: isPopular ? 'rgba(14, 23, 46, 0.9)' : 'var(--bg-card)',
@@ -38,7 +38,7 @@ export default function Pricing({ onSelectPackage }) {
                   flexDirection: 'column',
                   position: 'relative',
                   boxShadow: isPopular ? 'var(--shadow-glow)' : 'var(--shadow-sm)',
-                  transition: 'transform 0.3s ease'
+                  boxSizing: 'border-box'
                 }}
               >
                 {/* Popular Badge */}
@@ -46,18 +46,19 @@ export default function Pricing({ onSelectPackage }) {
                   <div
                     style={{
                       position: 'absolute',
-                      top: '-14px',
+                      top: '-12px',
                       left: '50%',
                       transform: 'translateX(-50%)',
                       backgroundColor: 'var(--accent-cyan)',
                       color: '#04111d',
-                      fontSize: '0.75rem',
+                      fontSize: '0.72rem',
                       fontWeight: 800,
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
-                      padding: '4px 14px',
+                      padding: '4px 12px',
                       borderRadius: 'var(--radius-full)',
-                      boxShadow: '0 2px 10px rgba(34, 211, 238, 0.4)'
+                      boxShadow: '0 2px 10px rgba(34, 211, 238, 0.4)',
+                      whiteSpace: 'nowrap'
                     }}
                   >
                     Most Popular Choice
@@ -65,10 +66,10 @@ export default function Pricing({ onSelectPackage }) {
                 )}
 
                 {/* Tier Header */}
-                <div style={{ marginBottom: '20px' }}>
+                <div style={{ marginBottom: '18px', marginTop: isPopular ? '6px' : 0 }}>
                   <span
                     style={{
-                      fontSize: '0.8rem',
+                      fontSize: '0.78rem',
                       fontWeight: 700,
                       textTransform: 'uppercase',
                       color: isPopular ? 'var(--accent-cyan)' : 'var(--text-dim)',
@@ -77,10 +78,10 @@ export default function Pricing({ onSelectPackage }) {
                   >
                     {pkg.badge}
                   </span>
-                  <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginTop: '4px' }}>
+                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: '4px' }}>
                     {pkg.name}
                   </h3>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginTop: '8px' }}>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.86rem', lineHeight: 1.6, marginTop: '6px' }}>
                     {pkg.audience}
                   </p>
                 </div>
@@ -88,13 +89,13 @@ export default function Pricing({ onSelectPackage }) {
                 {/* Scope Note */}
                 <div
                   style={{
-                    padding: '12px 16px',
+                    padding: '10px 14px',
                     borderRadius: 'var(--radius-sm)',
                     backgroundColor: 'rgba(255, 255, 255, 0.03)',
                     border: '1px solid var(--border-subtle)',
-                    fontSize: '0.84rem',
+                    fontSize: '0.82rem',
                     color: 'var(--text-secondary)',
-                    marginBottom: '24px'
+                    marginBottom: '20px'
                   }}
                 >
                   <strong>Scope:</strong> {pkg.scope}
@@ -105,8 +106,8 @@ export default function Pricing({ onSelectPackage }) {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '12px',
-                    marginBottom: '32px',
+                    gap: '10px',
+                    marginBottom: '28px',
                     flexGrow: 1
                   }}
                 >
@@ -117,7 +118,7 @@ export default function Pricing({ onSelectPackage }) {
                         display: 'flex',
                         alignItems: 'flex-start',
                         gap: '10px',
-                        fontSize: '0.88rem',
+                        fontSize: '0.86rem',
                         color: 'var(--text-secondary)',
                         lineHeight: 1.5
                       }}
@@ -141,7 +142,7 @@ export default function Pricing({ onSelectPackage }) {
                   className={`btn ${isPopular ? 'btn-primary' : 'btn-secondary'} btn-lg`}
                   style={{ width: '100%', cursor: 'pointer' }}
                 >
-                  {isPopular ? <Sparkles size={18} /> : <MessageCircle size={18} />}
+                  {isPopular ? <Sparkles size={17} /> : <MessageCircle size={17} />}
                   <span>{pkg.ctaText}</span>
                 </button>
               </div>
@@ -156,7 +157,7 @@ export default function Pricing({ onSelectPackage }) {
             maxWidth: '680px',
             margin: '0 auto',
             color: 'var(--text-dim)',
-            fontSize: '0.85rem',
+            fontSize: '0.82rem',
             lineHeight: 1.6
           }}
         >

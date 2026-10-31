@@ -13,11 +13,11 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
     service: prefilledService || 'Business Website Development',
     budget: 'Standard (Rs 50k–150k / $300–$800)',
     message: prefilledMessage || '',
-    honeypot: '' // Spam prevention bot trap
+    honeypot: ''
   });
 
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState({ state: 'idle', message: '' }); // idle | submitting | success | error
+  const [status, setStatus] = useState({ state: 'idle', message: '' });
 
   const validate = () => {
     const errs = {};
@@ -69,13 +69,10 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setStatus({ state: 'error', message: 'Please correct the highlighted fields.' });
+      setStatus({ state: 'error', message: 'Please check the highlighted fields.' });
       return;
     }
-    if (formData.honeypot) {
-      // Bot detected
-      return;
-    }
+    if (formData.honeypot) return;
 
     const text = encodeURIComponent(buildInquiryText());
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank', 'noopener,noreferrer');
@@ -91,16 +88,13 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setStatus({ state: 'error', message: 'Please correct the highlighted fields.' });
+      setStatus({ state: 'error', message: 'Please check the highlighted fields.' });
       return;
     }
-    if (formData.honeypot) {
-      return;
-    }
+    if (formData.honeypot) return;
 
     setStatus({ state: 'submitting', message: 'Preparing your inquiry...' });
 
-    // Check if an external form API endpoint is configured (e.g. Formspree or Web3Forms via VITE_CONTACT_API)
     const endpoint = import.meta.env.VITE_CONTACT_API;
 
     if (endpoint) {
@@ -114,7 +108,7 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
         if (response.ok) {
           setStatus({
             state: 'success',
-            message: 'Inquiry received successfully! Our team will review and reply within 24 hours.'
+            message: 'Inquiry received! We will reply within 24 hours.'
           });
           setFormData({
             name: '',
@@ -129,11 +123,10 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
           return;
         }
       } catch (err) {
-        console.warn('API submission failed, falling back to mail client dispatch', err);
+        console.warn('API submission failed, falling back to mail client', err);
       }
     }
 
-    // Direct Mailto Fallback
     const subject = encodeURIComponent(`Project Inquiry: ${formData.service} from ${formData.name}`);
     const body = encodeURIComponent(buildInquiryText());
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
@@ -148,10 +141,12 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
     <form
       className="card-glass"
       style={{
-        padding: '36px',
+        padding: 'clamp(20px, 4vw, 36px) clamp(16px, 3.5vw, 32px)',
         borderRadius: 'var(--radius-md)',
         border: '1px solid var(--border-medium)',
-        boxShadow: 'var(--shadow-lg)'
+        boxShadow: 'var(--shadow-lg)',
+        width: '100%',
+        boxSizing: 'border-box'
       }}
       noValidate
     >
@@ -170,8 +165,8 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '20px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+          gap: '16px'
         }}
       >
         <div className="form-group">
@@ -211,8 +206,8 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '20px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+          gap: '16px'
         }}
       >
         <div className="form-group">
@@ -253,8 +248,8 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '20px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+          gap: '16px'
         }}
       >
         <div className="form-group">
@@ -315,32 +310,32 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
         {errors.message && <span className="form-error">{errors.message}</span>}
       </div>
 
-      {/* Action Buttons */}
+      {/* Action Buttons - Stack full width on mobile */}
       <div
         style={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '14px',
+          gap: '12px',
           alignItems: 'center',
-          marginTop: '10px'
+          marginTop: '8px'
         }}
       >
         <button
           type="button"
           onClick={handleWhatsAppSubmit}
-          className="btn btn-whatsapp btn-lg"
-          style={{ flex: '1 1 220px' }}
+          className="btn btn-whatsapp btn-lg form-btn"
+          style={{ flex: '1 1 200px' }}
         >
           <MessageCircle size={18} />
-          <span>Send via WhatsApp (Instant)</span>
+          <span>Send via WhatsApp (Fastest)</span>
         </button>
 
         <button
           type="button"
           onClick={handleEmailSubmit}
           disabled={status.state === 'submitting'}
-          className="btn btn-secondary btn-lg"
-          style={{ flex: '1 1 200px' }}
+          className="btn btn-secondary btn-lg form-btn"
+          style={{ flex: '1 1 180px' }}
         >
           {status.state === 'submitting' ? (
             <>
@@ -360,13 +355,13 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
       {status.message && (
         <div
           style={{
-            marginTop: '20px',
-            padding: '12px 16px',
+            marginTop: '16px',
+            padding: '12px 14px',
             borderRadius: 'var(--radius-sm)',
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
-            fontSize: '0.9rem',
+            fontSize: '0.88rem',
             backgroundColor:
               status.state === 'success'
                 ? 'rgba(34, 197, 94, 0.15)'
@@ -385,14 +380,23 @@ export default function ContactForm({ prefilledService = '', prefilledMessage = 
 
       <p
         style={{
-          marginTop: '16px',
-          fontSize: '0.8rem',
+          marginTop: '14px',
+          fontSize: '0.78rem',
           color: 'var(--text-dim)',
           textAlign: 'center'
         }}
       >
-        🔒 We respect your privacy. No spam. You will hear directly from our lead engineer.
+        🔒 We respect your privacy. No spam. Direct response from lead engineer.
       </p>
+
+      <style>{`
+        @media (max-width: 520px) {
+          .form-btn {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+          }
+        }
+      `}</style>
     </form>
   );
 }

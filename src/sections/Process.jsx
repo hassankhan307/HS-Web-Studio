@@ -24,7 +24,7 @@ const STEPS = [
     num: '04',
     icon: CheckCircle,
     title: 'Multi-Device QA & Speed Audits',
-    desc: 'We rigorously stress-test forms, payment gateways, checkout mechanics, and verify responsive fluidity across Apple iOS, Android, and desktop browsers.'
+    desc: 'We test forms, checkout mechanics, and verify responsive fluidity across Apple iOS, Android, and desktop browsers.'
   },
   {
     num: '05',
@@ -48,33 +48,26 @@ export default function Process() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '24px',
-            position: 'relative'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 210px), 1fr))',
+            gap: '16px',
+            position: 'relative',
+            width: '100%'
           }}
         >
-          {STEPS.map((s, idx) => {
+          {STEPS.map((s) => {
             const Icon = s.icon;
             return (
               <div
                 key={s.num}
                 className="card-glass"
                 style={{
-                  padding: '28px 22px',
+                  padding: '22px 18px',
                   borderRadius: 'var(--radius-md)',
                   border: '1px solid var(--border-subtle)',
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--accent-cyan)';
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                  e.currentTarget.style.transform = 'translateY(0)';
+                  boxSizing: 'border-box'
                 }}
               >
                 {/* Step Number Top */}
@@ -83,13 +76,13 @@ export default function Process() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    marginBottom: '20px'
+                    marginBottom: '16px'
                   }}
                 >
                   <span
                     style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '1.4rem',
+                      fontSize: '1.3rem',
                       fontWeight: 800,
                       color: 'var(--accent-cyan)',
                       opacity: 0.9
@@ -99,8 +92,8 @@ export default function Process() {
                   </span>
                   <div
                     style={{
-                      width: '36px',
-                      height: '36px',
+                      width: '32px',
+                      height: '32px',
                       borderRadius: '50%',
                       backgroundColor: 'rgba(255, 255, 255, 0.04)',
                       color: 'var(--text-secondary)',
@@ -109,16 +102,16 @@ export default function Process() {
                       justifyContent: 'center'
                     }}
                   >
-                    <Icon size={18} />
+                    <Icon size={16} />
                   </div>
                 </div>
 
                 <h3
                   style={{
-                    fontSize: '1.12rem',
+                    fontSize: '1.08rem',
                     fontWeight: 700,
                     color: 'var(--text-primary)',
-                    marginBottom: '10px',
+                    marginBottom: '8px',
                     lineHeight: 1.3
                   }}
                 >
@@ -128,7 +121,7 @@ export default function Process() {
                 <p
                   style={{
                     color: 'var(--text-muted)',
-                    fontSize: '0.88rem',
+                    fontSize: '0.86rem',
                     lineHeight: 1.6,
                     margin: 0
                   }}

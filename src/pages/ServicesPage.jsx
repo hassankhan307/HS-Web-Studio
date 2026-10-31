@@ -40,7 +40,7 @@ export default function ServicesPage() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
             gap: '30px',
             marginBottom: '80px'
           }}
@@ -54,7 +54,8 @@ export default function ServicesPage() {
         <div
           className="card-glass"
           style={{
-            padding: '48px',
+            padding: 'clamp(24px, 5vw, 48px)',
+            boxSizing: 'border-box',
             borderRadius: 'var(--radius-lg)',
             border: '1px solid var(--border-accent)',
             textAlign: 'center',

@@ -22,62 +22,58 @@ export default function Technologies() {
           description="We avoid obsolete stacks and unstable experiments. Every tool in our stack is chosen for exceptional speed, enterprise security, and long-term scalability."
         />
 
-        {/* Category Tabs */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: '12px',
-            marginBottom: '40px'
-          }}
-        >
-          {technologyCategories.map((cat, idx) => {
-            const Icon = CATEGORY_ICONS[cat.name] || Layers;
-            const isSelected = activeCategoryIndex === idx;
+        {/* Scrollable Category Tabs on Mobile */}
+        <div className="filter-scroll-strip" style={{ marginBottom: '32px' }}>
+          <div style={{ display: 'flex', gap: '8px', margin: '0 auto', flexWrap: 'nowrap' }}>
+            {technologyCategories.map((cat, idx) => {
+              const Icon = CATEGORY_ICONS[cat.name] || Layers;
+              const isSelected = activeCategoryIndex === idx;
 
-            return (
-              <button
-                key={cat.name}
-                onClick={() => setActiveCategoryIndex(idx)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '10px 20px',
-                  borderRadius: 'var(--radius-full)',
-                  fontSize: '0.9rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  backgroundColor: isSelected ? 'var(--accent-cyan)' : 'rgba(255, 255, 255, 0.04)',
-                  color: isSelected ? '#04111d' : 'var(--text-secondary)',
-                  border: isSelected ? '1px solid var(--accent-cyan)' : '1px solid var(--border-subtle)',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <Icon size={16} />
-                <span>{cat.name}</span>
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={cat.name}
+                  onClick={() => setActiveCategoryIndex(idx)}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '8px 16px',
+                    borderRadius: 'var(--radius-full)',
+                    fontSize: '0.84rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                    backgroundColor: isSelected ? 'var(--accent-cyan)' : 'rgba(255, 255, 255, 0.04)',
+                    color: isSelected ? '#04111d' : 'var(--text-secondary)',
+                    border: isSelected ? '1px solid var(--accent-cyan)' : '1px solid var(--border-subtle)',
+                    transition: 'all 0.2s ease',
+                    flexShrink: 0
+                  }}
+                >
+                  <Icon size={15} />
+                  <span>{cat.name}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Selected Category Details Card */}
         <div
           className="card-glass"
           style={{
-            padding: '36px',
+            padding: 'clamp(20px, 4vw, 36px)',
             borderRadius: 'var(--radius-md)',
             border: '1px solid var(--border-medium)',
-            boxShadow: 'var(--shadow-md)'
+            boxShadow: 'var(--shadow-md)',
+            boxSizing: 'border-box'
           }}
         >
-          <div style={{ marginBottom: '28px' }}>
-            <h3 style={{ fontSize: '1.35rem', marginBottom: '8px' }}>
+          <div style={{ marginBottom: '22px' }}>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '6px' }}>
               {technologyCategories[activeCategoryIndex].name}
             </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0 }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: 0 }}>
               {technologyCategories[activeCategoryIndex].description}
             </p>
           </div>
@@ -86,46 +82,37 @@ export default function Technologies() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '16px'
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 220px), 1fr))',
+              gap: '12px'
             }}
           >
             {technologyCategories[activeCategoryIndex].items.map((tech) => (
               <div
                 key={tech.name}
                 style={{
-                  padding: '18px 20px',
+                  padding: '14px 16px',
                   borderRadius: 'var(--radius-sm)',
                   backgroundColor: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid var(--border-subtle)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  gap: '12px',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-accent)';
-                  e.currentTarget.style.backgroundColor = 'rgba(34, 211, 238, 0.05)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                  gap: '10px'
                 }}
               >
                 <div>
-                  <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '4px' }}>
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '2px' }}>
                     {tech.name}
                   </h4>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
                     {tech.role}
                   </div>
                 </div>
 
                 <span
                   style={{
-                    fontSize: '0.72rem',
-                    padding: '3px 8px',
+                    fontSize: '0.7rem',
+                    padding: '2px 7px',
                     borderRadius: 'var(--radius-full)',
                     backgroundColor: 'rgba(34, 211, 238, 0.1)',
                     color: 'var(--accent-cyan)',

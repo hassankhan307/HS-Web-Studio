@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
-import { Calculator, Clock, Check, MessageCircle, ArrowRight, Sparkles, RefreshCw } from 'lucide-react';
+import { Clock, Check, MessageCircle, Sparkles } from 'lucide-react';
 
 const PROJECT_TYPES = [
   { id: 'business', label: 'Business Website', basePKR: 45000, baseUSD: 280, baseDays: 7, desc: 'Corporate, clinic, agency, or service showcase' },
-  { id: 'shopify', label: 'Shopify Store', basePKR: 75000, baseUSD: 450, baseDays: 12, desc: 'Direct-to-consumer store with payment and courier APIs' },
+  { id: 'shopify', label: 'Shopify Store', basePKR: 75000, baseUSD: 450, baseDays: 12, desc: 'D2C store with payment and courier APIs' },
   { id: 'ecommerce', label: 'Custom E-Commerce', basePKR: 95000, baseUSD: 580, baseDays: 16, desc: 'Custom catalogue, cart, and automated order workflows' },
   { id: 'webapp', label: 'Custom Web Application', basePKR: 140000, baseUSD: 850, baseDays: 24, desc: 'Tailored business portal, dashboard, or client system' },
   { id: 'pos', label: 'Retail POS System', basePKR: 120000, baseUSD: 750, baseDays: 20, desc: 'Inventory, color/size variants, and thermal receipt billing' },
@@ -11,10 +11,10 @@ const PROJECT_TYPES = [
 ];
 
 const SCOPE_TIERS = [
-  { id: 'small', label: '1 – 3 Pages / Core Landing', mult: 1.0, dayAdd: 0 },
-  { id: 'medium', label: '4 – 7 Pages / Standard Studio', mult: 1.35, dayAdd: 3 },
-  { id: 'large', label: '8 – 15 Pages / Comprehensive', mult: 1.75, dayAdd: 7 },
-  { id: 'enterprise', label: '15+ Pages / Multi-departmental', mult: 2.2, dayAdd: 12 }
+  { id: 'small', label: '1–3 Pages / Core Landing', mult: 1.0, dayAdd: 0 },
+  { id: 'medium', label: '4–7 Pages / Standard Studio', mult: 1.35, dayAdd: 3 },
+  { id: 'large', label: '8–15 Pages / Comprehensive', mult: 1.75, dayAdd: 7 },
+  { id: 'enterprise', label: '15+ Pages / Multi-department', mult: 2.2, dayAdd: 12 }
 ];
 
 const FEATURES_LIST = [
@@ -34,21 +34,15 @@ const ADDITIONAL_SERVICES = [
 ];
 
 export default function CostEstimator({ onProceedToInquiry }) {
-  const [currency, setCurrency] = useState('PKR'); // 'PKR' | 'USD'
+  const [currency, setCurrency] = useState('PKR');
   const [selectedType, setSelectedType] = useState('business');
   const [selectedScope, setSelectedScope] = useState('medium');
   const [selectedFeatures, setSelectedFeatures] = useState(['whatsapp', 'seo_suite']);
-  const [selectedAddons, setSelectedAddons] = useState([]);
+  const [selectedAddons] = useState([]);
 
   const toggleFeature = (featId) => {
     setSelectedFeatures((prev) =>
       prev.includes(featId) ? prev.filter((id) => id !== featId) : [...prev, featId]
-    );
-  };
-
-  const toggleAddon = (addonId) => {
-    setSelectedAddons((prev) =>
-      prev.includes(addonId) ? prev.filter((id) => id !== addonId) : [...prev, addonId]
     );
   };
 
@@ -123,10 +117,12 @@ export default function CostEstimator({ onProceedToInquiry }) {
     <div
       className="card-glass"
       style={{
-        borderRadius: 'var(--radius-lg)',
+        borderRadius: 'var(--radius-md)',
         border: '1px solid var(--border-medium)',
-        padding: '36px',
-        boxShadow: 'var(--shadow-lg)'
+        padding: 'clamp(20px, 4vw, 36px) clamp(16px, 3vw, 32px)',
+        boxShadow: 'var(--shadow-lg)',
+        width: '100%',
+        boxSizing: 'border-box'
       }}
     >
       {/* Top Header & Currency Switcher */}
@@ -136,25 +132,25 @@ export default function CostEstimator({ onProceedToInquiry }) {
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '16px',
-          marginBottom: '32px',
-          paddingBottom: '20px',
+          gap: '14px',
+          marginBottom: '28px',
+          paddingBottom: '18px',
           borderBottom: '1px solid var(--border-subtle)'
         }}
       >
         <div>
           <span
             style={{
-              fontSize: '0.8rem',
+              fontSize: '0.78rem',
               fontWeight: 700,
               textTransform: 'uppercase',
-              letterSpacing: '0.05em',
+              letterSpacing: '0.04em',
               color: 'var(--accent-cyan)'
             }}
           >
             Interactive Budget & Timeline Calculator
           </span>
-          <h3 style={{ fontSize: '1.45rem', marginTop: '4px' }}>
+          <h3 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.45rem)', marginTop: '4px' }}>
             Calculate Your Indicative Project Investment
           </h3>
         </div>
@@ -166,16 +162,16 @@ export default function CostEstimator({ onProceedToInquiry }) {
             alignItems: 'center',
             backgroundColor: 'var(--bg-surface-alt)',
             borderRadius: 'var(--radius-full)',
-            padding: '4px',
+            padding: '3px',
             border: '1px solid var(--border-subtle)'
           }}
         >
           <button
             onClick={() => setCurrency('PKR')}
             style={{
-              padding: '6px 14px',
+              padding: '6px 12px',
               borderRadius: 'var(--radius-full)',
-              fontSize: '0.82rem',
+              fontSize: '0.8rem',
               fontWeight: 700,
               cursor: 'pointer',
               backgroundColor: currency === 'PKR' ? 'var(--accent-cyan)' : 'transparent',
@@ -188,9 +184,9 @@ export default function CostEstimator({ onProceedToInquiry }) {
           <button
             onClick={() => setCurrency('USD')}
             style={{
-              padding: '6px 14px',
+              padding: '6px 12px',
               borderRadius: 'var(--radius-full)',
-              fontSize: '0.82rem',
+              fontSize: '0.8rem',
               fontWeight: 700,
               cursor: 'pointer',
               backgroundColor: currency === 'USD' ? 'var(--accent-cyan)' : 'transparent',
@@ -204,15 +200,15 @@ export default function CostEstimator({ onProceedToInquiry }) {
       </div>
 
       {/* Step 1: Select Project Type */}
-      <div style={{ marginBottom: '32px' }}>
-        <h4 style={{ fontSize: '1rem', marginBottom: '14px', color: 'var(--text-primary)' }}>
+      <div style={{ marginBottom: '28px' }}>
+        <h4 style={{ fontSize: '0.98rem', marginBottom: '12px', color: 'var(--text-primary)' }}>
           1. Select Project Type
         </h4>
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '12px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+            gap: '10px'
           }}
         >
           {PROJECT_TYPES.map((type) => {
@@ -222,22 +218,23 @@ export default function CostEstimator({ onProceedToInquiry }) {
                 key={type.id}
                 onClick={() => setSelectedType(type.id)}
                 style={{
-                  padding: '16px',
+                  padding: '14px 16px',
                   borderRadius: 'var(--radius-sm)',
                   backgroundColor: isSelected ? 'rgba(34, 211, 238, 0.12)' : 'rgba(255, 255, 255, 0.02)',
                   border: isSelected ? '1px solid var(--accent-cyan)' : '1px solid var(--border-subtle)',
                   textAlign: 'left',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease'
+                  transition: 'all 0.2s ease',
+                  boxSizing: 'border-box'
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                  <span style={{ fontWeight: 700, fontSize: '0.95rem', color: isSelected ? 'var(--accent-cyan)' : 'var(--text-primary)' }}>
+                  <span style={{ fontWeight: 700, fontSize: '0.92rem', color: isSelected ? 'var(--accent-cyan)' : 'var(--text-primary)' }}>
                     {type.label}
                   </span>
                   {isSelected && <Check size={16} style={{ color: 'var(--accent-cyan)' }} />}
                 </div>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)', margin: 0 }}>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-dim)', margin: 0 }}>
                   {type.desc}
                 </p>
               </button>
@@ -247,14 +244,14 @@ export default function CostEstimator({ onProceedToInquiry }) {
       </div>
 
       {/* Step 2: Select Scope */}
-      <div style={{ marginBottom: '32px' }}>
-        <h4 style={{ fontSize: '1rem', marginBottom: '14px', color: 'var(--text-primary)' }}>
+      <div style={{ marginBottom: '28px' }}>
+        <h4 style={{ fontSize: '0.98rem', marginBottom: '12px', color: 'var(--text-primary)' }}>
           2. Scale & Page Volume
         </h4>
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
             gap: '10px'
           }}
         >
@@ -270,10 +267,11 @@ export default function CostEstimator({ onProceedToInquiry }) {
                   backgroundColor: isSelected ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255, 255, 255, 0.02)',
                   border: isSelected ? '1px solid var(--accent-blue)' : '1px solid var(--border-subtle)',
                   textAlign: 'left',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  boxSizing: 'border-box'
                 }}
               >
-                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: isSelected ? '#93c5fd' : 'var(--text-secondary)' }}>
+                <span style={{ fontSize: '0.86rem', fontWeight: 600, color: isSelected ? '#93c5fd' : 'var(--text-secondary)' }}>
                   {scope.label}
                 </span>
               </button>
@@ -283,14 +281,14 @@ export default function CostEstimator({ onProceedToInquiry }) {
       </div>
 
       {/* Step 3: Select Features */}
-      <div style={{ marginBottom: '32px' }}>
-        <h4 style={{ fontSize: '1rem', marginBottom: '14px', color: 'var(--text-primary)' }}>
+      <div style={{ marginBottom: '28px' }}>
+        <h4 style={{ fontSize: '0.98rem', marginBottom: '12px', color: 'var(--text-primary)' }}>
           3. Specialized Features & Integrations
         </h4>
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
             gap: '10px'
           }}
         >
@@ -301,14 +299,15 @@ export default function CostEstimator({ onProceedToInquiry }) {
                 key={feat.id}
                 onClick={() => toggleFeature(feat.id)}
                 style={{
-                  padding: '12px 16px',
+                  padding: '12px 14px',
                   borderRadius: 'var(--radius-sm)',
                   backgroundColor: isChecked ? 'rgba(34, 211, 238, 0.08)' : 'rgba(255, 255, 255, 0.02)',
                   border: isChecked ? '1px solid rgba(34, 211, 238, 0.4)' : '1px solid var(--border-subtle)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
-                  cursor: 'pointer'
+                  gap: '10px',
+                  cursor: 'pointer',
+                  boxSizing: 'border-box'
                 }}
               >
                 <div
@@ -326,7 +325,7 @@ export default function CostEstimator({ onProceedToInquiry }) {
                 >
                   {isChecked && <Check size={13} style={{ color: '#04111d' }} />}
                 </div>
-                <span style={{ fontSize: '0.86rem', color: isChecked ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
+                <span style={{ fontSize: '0.84rem', color: isChecked ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
                   {feat.label}
                 </span>
               </div>
@@ -335,62 +334,61 @@ export default function CostEstimator({ onProceedToInquiry }) {
         </div>
       </div>
 
-      {/* Calculation Summary Card */}
+      {/* Calculation Summary Card - Stacked cleanly on mobile */}
       <div
         style={{
-          marginTop: '36px',
-          padding: '28px',
+          marginTop: '32px',
+          padding: 'clamp(20px, 3.5vw, 28px)',
           borderRadius: 'var(--radius-md)',
           background: 'linear-gradient(135deg, rgba(14, 23, 46, 0.9) 0%, rgba(10, 17, 34, 0.95) 100%)',
           border: '1px solid var(--border-accent)',
-          boxShadow: 'var(--shadow-glow)'
+          boxShadow: 'var(--shadow-glow)',
+          width: '100%',
+          boxSizing: 'border-box'
         }}
       >
         <div
+          className="estimator-summary-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '24px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
+            gap: '20px',
             alignItems: 'center',
-            marginBottom: '24px'
+            marginBottom: '20px'
           }}
         >
           {/* Estimated Budget Range */}
           <div>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Indicative Estimated Budget
             </span>
             <div
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)',
+                fontSize: 'clamp(1.4rem, 4vw, 2rem)',
                 fontWeight: 800,
                 color: 'var(--accent-cyan)',
-                marginTop: '4px'
+                marginTop: '4px',
+                wordBreak: 'break-word'
               }}
             >
               {currency} {calculation.rangeLow.toLocaleString()} – {calculation.rangeHigh.toLocaleString()}
             </div>
-            <p style={{ fontSize: '0.78rem', color: 'var(--text-dim)', marginTop: '4px' }}>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '4px' }}>
               *Subject to exact project brief and custom API scope.
             </p>
           </div>
 
           {/* Timeline Estimate */}
-          <div
-            style={{
-              paddingLeft: '20px',
-              borderLeft: '1px solid var(--border-subtle)'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-dim)', fontSize: '0.8rem', textTransform: 'uppercase' }}>
+          <div className="estimator-timeline-box">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-dim)', fontSize: '0.75rem', textTransform: 'uppercase' }}>
               <Clock size={14} style={{ color: 'var(--accent-cyan)' }} />
               <span>Indicative Timeline</span>
             </div>
             <div
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: '1.5rem',
+                fontSize: 'clamp(1.3rem, 3.5vw, 1.6rem)',
                 fontWeight: 700,
                 color: 'var(--text-primary)',
                 marginTop: '4px'
@@ -398,7 +396,7 @@ export default function CostEstimator({ onProceedToInquiry }) {
             >
               ~{calculation.weeksLow} to {calculation.weeksHigh} Weeks
             </div>
-            <p style={{ fontSize: '0.78rem', color: 'var(--text-dim)', marginTop: '4px' }}>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '4px' }}>
               From discovery alignment to final deployment.
             </p>
           </div>
@@ -409,8 +407,8 @@ export default function CostEstimator({ onProceedToInquiry }) {
           style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '14px',
-            paddingTop: '20px',
+            gap: '12px',
+            paddingTop: '18px',
             borderTop: '1px solid var(--border-subtle)'
           }}
         >
@@ -418,11 +416,11 @@ export default function CostEstimator({ onProceedToInquiry }) {
             href={`https://wa.me/923312901930?text=${generateWhatsAppEstimateMessage()}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-whatsapp"
-            style={{ flex: '1 1 240px' }}
+            className="btn btn-whatsapp est-btn"
+            style={{ flex: '1 1 220px' }}
           >
             <MessageCircle size={18} />
-            <span>Send This Estimate via WhatsApp</span>
+            <span>Send Estimate via WhatsApp</span>
           </a>
 
           {onProceedToInquiry && (
@@ -431,8 +429,8 @@ export default function CostEstimator({ onProceedToInquiry }) {
                 const specNote = `Configured Estimator: ${calculation.typeObj.label} (${calculation.scopeObj.label}), Range: ${currency} ${calculation.rangeLow.toLocaleString()} - ${calculation.rangeHigh.toLocaleString()}`;
                 onProceedToInquiry(specNote);
               }}
-              className="btn btn-primary"
-              style={{ flex: '1 1 200px' }}
+              className="btn btn-primary est-btn"
+              style={{ flex: '1 1 180px' }}
             >
               <Sparkles size={18} />
               <span>Formal Quote Inquiry</span>
@@ -440,6 +438,25 @@ export default function CostEstimator({ onProceedToInquiry }) {
           )}
         </div>
       </div>
+
+      <style>{`
+        .estimator-timeline-box {
+          padding-left: 20px;
+          border-left: 1px solid var(--border-subtle);
+        }
+        @media (max-width: 640px) {
+          .estimator-timeline-box {
+            padding-left: 0 !important;
+            border-left: none !important;
+            border-top: 1px solid var(--border-subtle) !important;
+            padding-top: 16px !important;
+          }
+          .est-btn {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

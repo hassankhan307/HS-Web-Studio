@@ -48,9 +48,9 @@ export default function About() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '24px',
-            marginBottom: '48px'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))',
+            gap: 'clamp(16px, 2.5vw, 24px)',
+            marginBottom: '40px'
           }}
         >
           {HIGHLIGHTS.map((h, idx) => {
@@ -60,18 +60,18 @@ export default function About() {
                 key={idx}
                 className="card-glass"
                 style={{
-                  padding: '28px',
+                  padding: 'clamp(20px, 3.5vw, 28px)',
                   borderRadius: 'var(--radius-md)',
                   display: 'flex',
                   alignItems: 'flex-start',
-                  gap: '18px',
-                  transition: 'all 0.3s ease'
+                  gap: '16px',
+                  boxSizing: 'border-box'
                 }}
               >
                 <div
                   style={{
-                    width: '46px',
-                    height: '46px',
+                    width: '42px',
+                    height: '42px',
                     borderRadius: 'var(--radius-sm)',
                     backgroundColor: 'var(--accent-cyan-dim)',
                     border: '1px solid var(--border-accent)',
@@ -82,11 +82,11 @@ export default function About() {
                     flexShrink: 0
                   }}
                 >
-                  <Icon size={22} />
+                  <Icon size={20} />
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '1.15rem', marginBottom: '8px' }}>{h.title}</h3>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
+                  <h3 style={{ fontSize: '1.1rem', marginBottom: '6px' }}>{h.title}</h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
                     {h.desc}
                   </p>
                 </div>
@@ -99,26 +99,26 @@ export default function About() {
         <div
           className="card-glass"
           style={{
-            padding: '32px 36px',
+            padding: 'clamp(24px, 4vw, 36px)',
             borderRadius: 'var(--radius-md)',
             border: '1px solid var(--border-accent)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '24px',
+            gap: '20px',
             background: 'linear-gradient(135deg, rgba(20, 31, 61, 0.5) 0%, rgba(10, 17, 34, 0.8) 100%)'
           }}
         >
-          <div>
-            <h3 style={{ fontSize: '1.3rem', marginBottom: '6px' }}>
+          <div style={{ maxWidth: '620px' }}>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '6px' }}>
               Want to learn more about our development ethos and founder story?
             </h3>
-            <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.95rem' }}>
+            <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.92rem' }}>
               Explore how we approach client partnerships, quality standards, and digital delivery.
             </p>
           </div>
-          <Link to="/about" className="btn btn-primary">
+          <Link to="/about" className="btn btn-primary" style={{ width: 'min(100%, 280px)' }}>
             <span>Read Our Studio Story</span>
             <ArrowRight size={16} />
           </Link>

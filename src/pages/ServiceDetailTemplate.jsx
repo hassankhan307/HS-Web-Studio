@@ -62,7 +62,7 @@ export default function ServiceDetailTemplate({ serviceSlug }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
             gap: '32px',
             marginBottom: '72px'
           }}
@@ -71,7 +71,8 @@ export default function ServiceDetailTemplate({ serviceSlug }) {
           <div
             className="card-glass"
             style={{
-              padding: '36px',
+              padding: 'clamp(20px, 4vw, 36px)',
+              boxSizing: 'border-box',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-medium)',
               background: 'linear-gradient(135deg, rgba(20, 31, 61, 0.7) 0%, rgba(10, 17, 34, 0.9) 100%)'
@@ -104,7 +105,8 @@ export default function ServiceDetailTemplate({ serviceSlug }) {
           <div
             className="card-glass"
             style={{
-              padding: '36px',
+              padding: 'clamp(20px, 4vw, 36px)',
+              boxSizing: 'border-box',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)'
             }}
@@ -137,7 +139,8 @@ export default function ServiceDetailTemplate({ serviceSlug }) {
         <div
           className="card-glass"
           style={{
-            padding: '36px',
+            padding: 'clamp(20px, 4vw, 36px)',
+            boxSizing: 'border-box',
             borderRadius: 'var(--radius-md)',
             border: '1px solid var(--border-subtle)',
             marginBottom: '72px'
@@ -147,7 +150,7 @@ export default function ServiceDetailTemplate({ serviceSlug }) {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
               gap: '16px'
             }}
           >
@@ -185,7 +188,7 @@ export default function ServiceDetailTemplate({ serviceSlug }) {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
                 gap: '24px'
               }}
             >

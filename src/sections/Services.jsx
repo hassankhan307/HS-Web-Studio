@@ -17,9 +17,9 @@ export default function Services({ onInquireService }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '28px',
-            marginBottom: '48px'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))',
+            gap: 'clamp(18px, 3vw, 28px)',
+            marginBottom: '40px'
           }}
         >
           {services.map((service) => (
@@ -32,7 +32,7 @@ export default function Services({ onInquireService }) {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <Link to="/services" className="btn btn-secondary btn-lg">
+          <Link to="/services" className="btn btn-secondary btn-lg" style={{ width: 'min(100%, 420px)' }}>
             <span>Explore All Detailed Service Outlines & FAQs</span>
             <ArrowRight size={16} />
           </Link>

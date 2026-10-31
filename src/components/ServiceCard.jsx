@@ -28,7 +28,7 @@ export default function ServiceCard({ service, onInquire }) {
     <article
       className="card-glass"
       style={{
-        padding: '32px 28px',
+        padding: 'clamp(22px, 3.5vw, 32px) clamp(18px, 3vw, 26px)',
         borderRadius: 'var(--radius-md)',
         display: 'flex',
         flexDirection: 'column',
@@ -38,7 +38,7 @@ export default function ServiceCard({ service, onInquire }) {
         boxSizing: 'border-box'
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-6px)';
+        e.currentTarget.style.transform = 'translateY(-4px)';
         e.currentTarget.style.borderColor = 'var(--border-accent)';
         e.currentTarget.style.boxShadow = '0 14px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(34, 211, 238, 0.12)';
       }}
@@ -54,13 +54,13 @@ export default function ServiceCard({ service, onInquire }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          marginBottom: '22px'
+          marginBottom: '18px'
         }}
       >
         <div
           style={{
-            width: '52px',
-            height: '52px',
+            width: '46px',
+            height: '46px',
             borderRadius: 'var(--radius-sm)',
             backgroundColor: 'var(--accent-cyan-dim)',
             border: '1px solid var(--border-accent)',
@@ -68,22 +68,23 @@ export default function ServiceCard({ service, onInquire }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 0 15px rgba(34, 211, 238, 0.15)'
+            boxShadow: '0 0 15px rgba(34, 211, 238, 0.15)',
+            flexShrink: 0
           }}
         >
-          <IconComponent size={26} />
+          <IconComponent size={24} />
         </div>
 
         {service.eyebrow && (
           <span
             style={{
-              fontSize: '0.75rem',
+              fontSize: '0.72rem',
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               color: 'var(--text-dim)',
               backgroundColor: 'rgba(255, 255, 255, 0.03)',
-              padding: '4px 10px',
+              padding: '3px 8px',
               borderRadius: 'var(--radius-full)',
               border: '1px solid var(--border-subtle)'
             }}
@@ -95,10 +96,10 @@ export default function ServiceCard({ service, onInquire }) {
 
       <h3
         style={{
-          fontSize: '1.28rem',
+          fontSize: '1.22rem',
           fontWeight: 700,
           color: 'var(--text-primary)',
-          marginBottom: '12px',
+          marginBottom: '10px',
           lineHeight: 1.3
         }}
       >
@@ -108,9 +109,9 @@ export default function ServiceCard({ service, onInquire }) {
       <p
         style={{
           color: 'var(--text-muted)',
-          fontSize: '0.92rem',
+          fontSize: '0.88rem',
           lineHeight: 1.65,
-          marginBottom: '20px',
+          marginBottom: '18px',
           flexGrow: 1
         }}
       >
@@ -123,9 +124,9 @@ export default function ServiceCard({ service, onInquire }) {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '10px',
-            marginBottom: '28px',
-            paddingTop: '16px',
+            gap: '8px',
+            marginBottom: '22px',
+            paddingTop: '14px',
             borderTop: '1px solid var(--border-subtle)'
           }}
         >
@@ -135,10 +136,10 @@ export default function ServiceCard({ service, onInquire }) {
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
-                gap: '10px',
-                fontSize: '0.86rem',
+                gap: '8px',
+                fontSize: '0.84rem',
                 color: 'var(--text-secondary)',
-                lineHeight: 1.5
+                lineHeight: 1.45
               }}
             >
               <Check
@@ -161,7 +162,8 @@ export default function ServiceCard({ service, onInquire }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          marginTop: 'auto'
+          marginTop: 'auto',
+          paddingTop: '10px'
         }}
       >
         <Link
@@ -170,7 +172,7 @@ export default function ServiceCard({ service, onInquire }) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            fontSize: '0.88rem',
+            fontSize: '0.86rem',
             fontWeight: 600,
             color: 'var(--accent-cyan)'
           }}
@@ -183,10 +185,10 @@ export default function ServiceCard({ service, onInquire }) {
           <button
             onClick={() => onInquire(service.title)}
             style={{
-              fontSize: '0.82rem',
+              fontSize: '0.8rem',
               fontWeight: 600,
               color: 'var(--text-muted)',
-              padding: '6px 12px',
+              padding: '5px 10px',
               borderRadius: 'var(--radius-xs)',
               backgroundColor: 'rgba(255, 255, 255, 0.04)',
               border: '1px solid var(--border-subtle)',
@@ -199,10 +201,10 @@ export default function ServiceCard({ service, onInquire }) {
           <Link
             to="/contact"
             style={{
-              fontSize: '0.82rem',
+              fontSize: '0.8rem',
               fontWeight: 600,
               color: 'var(--text-muted)',
-              padding: '6px 12px',
+              padding: '5px 10px',
               borderRadius: 'var(--radius-xs)',
               backgroundColor: 'rgba(255, 255, 255, 0.04)',
               border: '1px solid var(--border-subtle)'

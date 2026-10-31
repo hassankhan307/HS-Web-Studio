@@ -54,7 +54,7 @@ export default function EstimatorPage() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
             gap: '24px',
             marginBottom: '72px'
           }}
@@ -94,7 +94,8 @@ export default function EstimatorPage() {
         <div
           className="card-glass"
           style={{
-            padding: '40px',
+            padding: 'clamp(24px, 4vw, 40px)',
+            boxSizing: 'border-box',
             borderRadius: 'var(--radius-lg)',
             border: '1px solid var(--border-accent)',
             textAlign: 'center',
