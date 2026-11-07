@@ -273,6 +273,17 @@ export default function Navbar({ onOpenQuoteModal }) {
             <span>Estimator</span>
           </NavLink>
 
+                    <NavLink
+            to="/reviews"
+            style={({ isActive }) => ({
+              fontSize: '0.92rem',
+              fontWeight: 500,
+              color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)'
+            })}
+          >
+            Reviews
+          </NavLink>
+
           <NavLink
             to="/contact"
             style={({ isActive }) => ({
@@ -467,6 +478,20 @@ export default function Navbar({ onOpenQuoteModal }) {
           >
             <Calculator size={18} style={{ color: 'var(--accent-cyan)' }} />
             <span>Cost & Timeline Estimator</span>
+          </NavLink>
+
+                    <NavLink
+            to="/reviews"
+            onClick={() => setMobileMenuOpen(false)}
+            style={({ isActive }) => ({
+              fontSize: '1.15rem',
+              fontWeight: 600,
+              padding: '12px 0',
+              borderBottom: '1px solid var(--border-subtle)',
+              color: isActive ? 'var(--accent-cyan)' : 'var(--text-primary)'
+            })}
+          >
+            Client Reviews
           </NavLink>
 
           <NavLink

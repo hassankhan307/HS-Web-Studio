@@ -22,6 +22,8 @@ import PortfolioPage from './pages/PortfolioPage';
 import ProjectDetails from './pages/ProjectDetails';
 import EstimatorPage from './pages/EstimatorPage';
 import ContactPage from './pages/ContactPage';
+import ReviewsPage from './pages/ReviewsPage';
+import AdminDashboard from './pages/AdminDashboard';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -57,6 +59,8 @@ export default function App() {
           <Route path="/portfolio/:slug" element={<ProjectDetails />} />
           <Route path="/estimator" element={<EstimatorPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

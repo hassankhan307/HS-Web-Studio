@@ -130,6 +130,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/reviews" style={{ color: 'var(--text-muted)', fontSize: '0.92rem' }}>
+                  Client Experiences
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" style={{ color: 'var(--text-muted)', fontSize: '0.92rem' }}>
                   Contact & Inquiries
                 </Link>
@@ -245,7 +250,11 @@ export default function Footer() {
           <div>
             &copy; {currentYear} HS Web Studio. All rights reserved. Built with React & Vite in Karachi, Pakistan.
           </div>
-          <div style={{ display: 'flex', gap: '20px' }}>
+          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            <Link to="/reviews" style={{ color: 'var(--accent-cyan)' }}>
+              ★ Client Reviews
+            </Link>
+            <span>·</span>
             <span>Privacy Policy</span>
             <span>·</span>
             <span>Terms & Conditions</span>
@@ -258,6 +267,10 @@ export default function Footer() {
             >
               XML Sitemap
             </a>
+            <span>·</span>
+            <Link to="/admin" style={{ color: 'var(--text-dim)' }}>
+              Staff Portal
+            </Link>
           </div>
         </div>
       </div>
